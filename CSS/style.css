@@ -1,0 +1,74 @@
+body {
+    background-image: url('../photo/ai-generated-8718051.jpg');
+    background-size: cover;
+    
+}
+
+.a1{
+    color: red;
+    font-size: 20px;
+    border: 5PX solid black ;
+    padding: 5px;
+}
+#a1{
+    color: blue;
+    font-size: 30px;
+    border: 10PX solid black ;
+    padding: 10px;
+}
+#a2{
+    color: green;
+    font-size: 40px;
+    border: 15PX solid black ;
+    padding: 0px;
+}
+.a2:hover{
+    background-color: lightseagreen;
+    color: yellow;
+    font-size: 50px;
+    border: 20PX solid 
+    rgb(19, 162, 228) ;
+    padding: 20px;
+}
+.h1{
+    color: purple;
+    font-size: 25px;
+    border: 3PX solid black ;
+    padding: 5px;
+}
+.h2 {
+    color: orange;
+    font-size: 25px;
+    border: 3PX solid black ;
+    padding: 10px;
+}
+.h3 {
+    color: rgb(73, 22, 190);
+    font-size: 25px;
+    border: 3PX solid black ;
+    padding: 15px;
+}
+.h4 {
+    color: rgb(0, 128, 0);
+    font-size: 25px;
+    border: 5PX solid black ;
+     padding: 5px 0px 0px 15px
+}
+
+.h5 {
+    color: rgb(255, 0, 0);
+    font-size: 25px;
+    padding: 5px;
+    border: 5PX solid black ;
+    margin: 5px 15px 0px 0px;
+    border-radius: 20px;
+   
+   
+}
+.h6 {
+    color: rgb(0, 0, 255);
+    font-size: 25px;
+    border: 5PX double black ;
+    transform: rotate(10deg);
+   
+}
