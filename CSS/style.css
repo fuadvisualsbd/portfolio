@@ -118,6 +118,7 @@
     padding: 10px 0;
     font-size: 24px;
     font-weight: bold;
+    position: sticky;
 }
 .nav select:hover {
     background-color: #45a049;
