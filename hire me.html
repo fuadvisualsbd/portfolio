@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mary Hardy — Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Mary Hardy — designer & developer" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome (free) -->
+  <script src="https://kit.fontawesome.com/9c6d1b2c3d.js" crossorigin="anonymous"></script>
+  <style>
+    :root{
+      --bg:#0f1724; /* deep */
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#7c5cff;
+      --glass: rgba(255,255,255,0.04);
+      --radius:16px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef8;background:linear-gradient(180deg,#051026 0%, #071428 100%);}
+    a{color:inherit;text-decoration:none}
+    header{display:flex;align-items:center;justify-content:space-between;padding:28px 36px;position:sticky;top:0;background:linear-gradient(180deg,rgba(3,7,12,0.6),rgba(3,7,12,0.1));backdrop-filter: blur(6px);z-index:50}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand img{width:48px;height:48px;border-radius:10px;object-fit:cover}
+    .brand h1{font-size:18px;margin:0}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted)}
+    nav a:hover{color:#fff;background:var(--glass)}
+    .container{max-width:1100px;margin:36px auto;padding:0 20px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
+    .intro{padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:20px}
+    .intro h2{margin:0;font-size:28px}
+    .intro p.lead{color:var(--muted);line-height:1.6}
+    .cta{margin-top:18px;display:flex;gap:12px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;font-weight:700;background:linear-gradient(90deg,var(--accent),#55b6ff);color:#fff;border:none;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:18px;text-align:center}
+    .profile-card img{width:140px;height:140px;border-radius:999px;object-fit:cover;border:4px solid rgba(255,255,255,0.03)}
+    .profile-card h3{margin:12px 0 4px}
+    .profile-card p{margin:0;color:var(--muted)}
+    .socials{display:flex;gap:8px;justify-content:center;margin-top:12px}
+    .socials a{width:36px;height:36px;display:inline-grid;place-items:center;border-radius:8px;background:var(--glass)}
+
+    /* Sections */
+    section{margin-top:26px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .skills-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .skill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:600}
+
+    /* Resume / Experience */
+    .timeline{border-left:2px dashed rgba(255,255,255,0.03);padding-left:18px}
+    .timeline-item{margin-bottom:18px;padding-left:14px}
+    .timeline-item h4{margin:0}
+    .meta{color:var(--muted);font-size:13px}
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;color:#e6eef8}
+    textarea{min-height:120px}
+    footer{margin:36px 0 70px;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      nav ul{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Mary">
+      <div>
+        <div style="font-size:12px;color:var(--muted);">Hire Me · Portfolio · Blog</div>
+        <h1 style="margin:0;font-size:16px">Mary Hardy</h1>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="intro card">
+        <h2>Hi, I am <strong>Mary Hardy</strong></h2>
+        <p class="lead">A designer & developer with a passion for web design. I enjoy building simple, clean and slick websites that provide real value to the end user. Thousands of clients have procured exceptional results while working with me.</p>
+        <div class="cta">
+          <a class="btn" href="#contact"><i class="fa fa-paper-plane"></i> Contact</a>
+          <a class="btn secondary" href="#resume">Download CV</a>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:160px">
+            <strong>Name:</strong>
+            <div>Mary Hardy</div>
+          </div>
+          <div class="card" style="flex:1;min-width:160px">
+            <strong>Email:</strong>
+            <div>info@gmail.com</div>
+          </div>
+          <div class="card" style="flex:1;min-width:160px">
+            <strong>Date of birth:</strong>
+            <div>11 November 1987</div>
+          </div>
+          <div class="card" style="flex:1;min-width:160px">
+            <strong>From:</strong>
+            <div>Los Angeles, USA</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <img src="https://images.unsplash.com/photo-1545996124-6b44b4d5d9f0?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Mary Hardy">
+        <h3>Mary Hardy</h3>
+        <p>Designer & Developer</p>
+        <div class="socials">
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="card">
+        <h3>About Me</h3>
+        <p style="color:var(--muted)">I'm a designer & developer with a passion for web design. I enjoy developing simple, clean and slick websites that provide real value to the end user. Delivering work within time and budget which meets clients requirements.</p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="grid-2">
+      <div class="card">
+        <h3>What I do</h3>
+        <p class="meta">I have more than 10 years experience building software for clients all over the world. Below is a quick overview of my main technical skill sets and technologies I use.</p>
+        <div class="skills-list">
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">React</span>
+          <span class="skill">Node.js</span>
+          <span class="skill">MongoDB</span>
+          <span class="skill">UI/UX</span>
+          <span class="skill">Accessibility</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Featured skill blocks</h3>
+        <p class="meta">Below are short descriptions extracted from your source layout — you can edit the text or replace icons as needed.</p>
+        <div style="display:grid;gap:12px;margin-top:12px">
+          <div class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="font-size:22px"><i class="fab fa-js-square"></i></div>
+            <div>
+              <strong>Vanilla JavaScript</strong>
+              <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
+            </div>
+          </div>
+
+          <div class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="font-size:22px"><i class="fab fa-react"></i></div>
+            <div>
+              <strong>React</strong>
+              <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
+            </div>
+          </div>
+
+          <div class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="font-size:22px"><i class="fab fa-node-js"></i></div>
+            <div>
+              <strong>Node.js</strong>
+              <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
+            </div>
+          </div>
+
+          <div class="card" style="display:flex;align-items:center;gap:12px">
+            <div style="font-size:22px">DB</div>
+            <div>
+              <strong>MongoDB</strong>
+              <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RESUME / EXPERIENCE -->
+    <section id="resume">
+      <div class="card">
+        <h3>A summary of My Resume</h3>
+        <div class="grid-2" style="margin-top:14px">
+          <div>
+            <h4>Education</h4>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h4>Master in Computer Engineering</h4>
+                <div class="meta">Harvard University — 2015 - 2017</div>
+                <p style="color:var(--muted)">List skill/technologies here. You can change the icon above to any of the 1500+ FontAwesome icons available.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>Master in Computer Engineering</h4>
+                <div class="meta">Harvard University — 2015 - 2017</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4>Experience</h4>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h4>Sr. Front End Developer</h4>
+                <div class="meta">Apple Inc — 2020 - Current</div>
+                <p style="color:var(--muted)">List skill/technologies here. Aenean commodo ligula eget dolor.</p>
+              </div>
+
+              <div class="timeline-item">
+                <h4>Jr. Front End Developer</h4>
+                <div class="meta">Dribbble Inc — 2018 - 2022</div>
+              </div>
+
+              <div class="timeline-item">
+                <h4>HTML Developer</h4>
+                <div class="meta">Adobe Inc — 2017 - 2018</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;text-align:right">
+          <a class="btn" href="#contact">Lets Connect</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="card">
+        <h3>Contact</h3>
+        <p class="meta">Please fill out the form on this section to contact with me or call between 9:00 A.M and 8.00 P.M ET, Monday through Friday.</p>
+        <form onsubmit="event.preventDefault();alert('Message sent (demo)');">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="email" name="email" placeholder="Your email" required>
+          <textarea name="message" placeholder="Message" required></textarea>
+          <div style="display:flex;gap:12px;justify-content:flex-end">
+            <button type="submit" class="btn">Submit</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div>Download CV · © <span id="year"></span> Mary Hardy. All rights reserved.</div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
