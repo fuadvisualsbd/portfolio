@@ -8,18 +8,21 @@
   <meta name="description" content="Portfolio of Md. Fuyad Hasan — Web and Graphic designer & developer" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <!-- Font Awesome (free) -->
-  <!-- <script src="https://kit.fontawesome.com/9c6d1b2c3d.js" crossorigin="anonymous"></script> -->
+  Font Awesome (free) 
+  <script src="https://kit.fontawesome.com/9c6d1b2c3d.js" crossorigin="anonymous"></script>
+  <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 
   <style>
     :root {
-      --bg: #ff0000;
-      --card: #ff0000;
+      --bg: #ffffff;
+      --card: #ffffff;
       --muted: #000000;
       --accent: #5542fd;
-      --glass: rgba(255, 255, 255, 0.596);
+      --glass: rgba(148, 147, 147, 0.733);
       --radius: 16px;
-      color-scheme: rgb(255, 0, 0);
+      color-scheme: rgb(240, 238, 238);
     }
 
     * {
@@ -62,7 +65,7 @@
 
     .brand img {
       width: 48px;
-      height: 48px;
+      height: 60px;
       border-radius: 10px;
       object-fit: cover;
     }
@@ -283,7 +286,7 @@
 
     /* active menu css */
     nav a.active {
-      color: #ff2323 !important;
+      color: #ffffff !important;
       background: var(--glass) !important;
     }
     /* for map add  */
@@ -319,6 +322,81 @@
   }
 }
 
+a, button, input[type="submit"], .btn {
+  cursor: pointer;
+}
+
+a:hover, button:hover, input[type="submit"]:hover, .btn:hover {
+  background-color: #0057b379; /* example blue */
+  color: white;
+  transition: all 0.3s ease;
+}
+/* Common button style */
+button,
+input[type="submit"] {
+  cursor: pointer;
+  background-color: #007bff7e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #0057b38a;
+  transform: scale(1.05);
+}
+
+/* Link hover effect */
+a {
+  color: #007bff5b;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #0057b377;
+  text-decoration: underline;
+}
+
+/* Social icons hover */
+.socials a {
+  display: inline-block;
+  margin: 0 8px;
+  font-size: 22px;
+  color: #007BFF;
+  transition: all 0.3s ease;
+}
+
+.socials a:hover {
+  color: #0056b3;
+  transform: translateY(-3px) scale(1.2);
+}
+/* for skill keyword  */
+.skill {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #333;
+  padding: 6px 12px;
+  margin: 5px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.skill:hover {
+  background: #ff6b6b; /* Hover background color */
+  color: #fff;
+  transform: scale(1.1); /* Slight zoom */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
   </style>
 </head>
 
@@ -327,7 +405,7 @@
     <div class="brand">
       <img src="photo/passport size photo.jpg" alt="Fuyad" />
       <div>
-        <div style="font-size:12px; color: var(--muted);">Hire Me · Portfolio · Blog</div>
+        <div style="font-size:12px; color: var(--muted);"> Portfolio · Blog</div>
         <h1 style="margin:0; font-size:16px;">Md. Fuyad Hasan</h1>
       </div>
     </div>
@@ -359,18 +437,15 @@
         </div>
 
         <div style="margin-top:18px; display: flex; gap: 12px; flex-wrap: wrap;">
-          <div class="card" style="flex: 1; min-width: 160px;">
-            <strong>Name:</strong>
-            <div>Md. Fuyad Hasan</div>
-          </div>
-          <div class="card" style="flex: 1; min-width: 200px;">
-            <strong>Email:</strong>
-            <div>fuadvisuals.bd@gmail.com</div>
-          </div>
-          <div class="card" style="flex: 1; min-width: 160px;">
-            <strong>Date of birth:</strong>
-            <div>02 January, 2002</div>
-          </div>
+  <div class="card" style="flex: 1; min-width: 160px;">
+    <strong>Name:</strong>
+    <div>Md. Fuyad Hasan</div>
+  </div>
+
+  <div class="card" style="flex: 2; min-width: 300px;">
+    <strong>Email:</strong>
+    <div>fuadvisuals.bd@gmail.com</div>
+  </div>
           <div class="card" style="flex: 1; min-width: 160px;">
             <strong>From:</strong>
             <div>Mymensingh, Bangladesh</div>
@@ -379,13 +454,14 @@
       </div>
 
       <aside class="profile-card">
-        <img src="photo/my pic.png" alt="Mary Hardy" />
+        <img src="photo/my pic.png" alt="Fuyad" />
         <h3>Md. Fuyads Hasan</h3>
-        <p>Graphic Designer & Web Developer</p>
+        <p>Graphic Designer,Web Developer & Digital Marketer with Seo</p>
         <div class="socials">
-          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://web.facebook.com/md.fuyad.hasan.600/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://wa.me/8801780679079" target="_blank" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.behance.net/mdfuyadhasan/" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+          <a href="https://fuadvisuals-web.vercel.app/" target="_blank" title="Personal Website"><i class="fas fa-globe"></i></a>
         </div>
       </aside>
     </section>
@@ -410,57 +486,154 @@
           Helping brands grow with unique visuals. From logos to posters – designed with passion and precision.
         </p>
         <div class="skills-list">
-          <span class="skill">HTML</span>
-          <span class="skill">CSS</span>
-          <span class="skill">JavaScript</span>
-          <span class="skill">React</span>
-          <span class="skill">Node.js</span>
-          <span class="skill">MongoDB</span>
-          <span class="skill">UI/UX</span>
-          <span class="skill">Accessibility</span>
+<!-- 💻 Web Development -->
+<span class="skill">HTML</span>
+<span class="skill">CSS</span>
+<span class="skill">JavaScript</span>
+<span class="skill">React</span>
+<span class="skill">Node.js</span>
+<span class="skill">MongoDB</span>
+<span class="skill">UI/UX</span>
+<span class="skill">Accessibility</span>
+<span class="skill">TypeScript</span>
+<span class="skill">Vue.js</span>
+<span class="skill">Angular</span>
+<span class="skill">SASS / SCSS</span>
+<span class="skill">Bootstrap</span>
+<span class="skill">REST APIs</span>
+<span class="skill">GraphQL</span>
+<span class="skill">Webpack</span>
+
+<!-- 🎨 Graphics Design -->
+<span class="skill">Logo Design</span>
+<span class="skill">Social Media Post Design</span>
+<span class="skill">Banner & Poster Design</span>
+<span class="skill">Book Cover Design</span>
+<span class="skill">Infographic Design</span>
+<span class="skill">Photo Editing</span>
+<span class="skill">Vector Illustration</span>
+<span class="skill">Flyer Design</span>
+<span class="skill">Business Card Design</span>
+<span class="skill">T-shirt & Merchandise Design</span>
+<span class="skill">Packaging Design</span>
+<span class="skill">Typography</span>
+<span class="skill">Adobe Photoshop</span>
+<span class="skill">Adobe Illustrator</span>
+<span class="skill">UI Design</span>
+
+<!-- 📢 Digital Marketing -->
+<span class="skill">Social Media Marketing</span>
+<span class="skill">Facebook Ads</span>
+<span class="skill">Google Ads</span>
+<span class="skill">SEO</span>
+<span class="skill">Content Marketing</span>
+<span class="skill">Email Marketing</span>
+<span class="skill">Keyword Research</span>
+<span class="skill">Instagram Marketing</span>
+<span class="skill">YouTube Marketing</span>
+<span class="skill">Google Analytics</span>
+<span class="skill">Affiliate Marketing</span>
+<span class="skill">PPC Campaigns</span>
+<span class="skill">Marketing Strategy</span>
+<span class="skill">Brand Awareness</span>
+
+
+
         </div>
       </div>
 
-      <div class="card">
-        <h3>Featured skill blocks</h3>
-        <p class="meta">
-          Below are short descriptions extracted from your source layout — you can edit the text or replace icons as
-          needed.
-        </p>
-        <div style="display: grid; gap: 12px; margin-top: 12px;">
-          <div class="card" style="display: flex; align-items: center; gap: 12px;">
-            <div style="font-size: 22px"><i class="fab fa-js-square"></i></div>
-            <div>
-              <strong>Vanilla JavaScript</strong>
-              <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
-            </div>
-          </div>
+     <div class="card">
+  <h3>Featured skill blocks</h3>
+  <div style="display: grid; gap: 12px; margin-top: 12px;">
 
-          <div class="card" style="display: flex; align-items: center; gap: 12px;">
-            <div style="font-size: 22px"><i class="fab fa-react"></i></div>
-            <div>
-              <strong>React</strong>
-              <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
-            </div>
-          </div>
+    <!-- Web Development -->
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fab fa-html5" style="color: #e44d26;"></i></div>
+      <div>
+        <strong>HTML5</strong>
+        <div class="meta">Semantic and responsive web structure</div>
+      </div>
+    </div>
 
-          <div class="card" style="display: flex; align-items: center; gap: 12px;">
-            <div style="font-size: 22px"><i class="fab fa-node-js"></i></div>
-            <div>
-              <strong>Node.js</strong>
-              <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
-            </div>
-          </div>
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fab fa-css3-alt" style="color: #264de4;"></i></div>
+      <div>
+        <strong>CSS3</strong>
+        <div class="meta">Modern styling, Flexbox & Grid layouts</div>
+      </div>
+    </div>
 
-          <div class="card" style="display: flex; align-items: center; gap: 12px;">
-            <div style="font-size: 22px">DB</div>
-            <div>
-              <strong>MongoDB</strong>
-              <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
-            </div>
-          </div>
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fab fa-js-square" style="color: #f7df1e;"></i></div>
+      <div>
+        <strong>JavaScript</strong>
+        <div class="meta">Interactive and dynamic web features</div>
+      </div>
+    </div>
 
-          <p>hello</p>
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fab fa-react" style="color:#61dbfb;"></i></div>
+      <div>
+        <strong>React</strong>
+        <div class="meta">Modern UI library for building apps</div>
+      </div>
+    </div>
+
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fab fa-node-js" style="color:#3c873a;"></i></div>
+      <div>
+        <strong>Node.js</strong>
+        <div class="meta">Backend JavaScript runtime environment</div>
+      </div>
+    </div>
+
+    <!-- Graphics Design -->
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fas fa-paint-brush" style="color:#ff6f61;"></i></div>
+      <div>
+        <strong>Logo Design</strong>
+        <div class="meta">Creating memorable brand identities</div>
+      </div>
+    </div>
+
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fas fa-image" style="color:#007bff;"></i></div>
+      <div>
+        <strong>Photo Editing & Retouching</strong>
+        <div class="meta">Enhancing images for professionalism</div>
+      </div>
+    </div>
+
+    <!-- Digital Marketing -->
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fab fa-facebook-f" style="color:#3b5998;"></i></div>
+      <div>
+        <strong>Social Media Marketing</strong>
+        <div class="meta">Engaging audiences on social platforms</div>
+      </div>
+    </div>
+
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fab fa-google" style="color:#db4437;"></i></div>
+      <div>
+        <strong>Google Ads</strong>
+        <div class="meta">Targeted advertising for leads & sales</div>
+      </div>
+    </div>
+
+    <div class="card" style="display: flex; align-items: center; gap: 12px;">
+      <div style="font-size: 22px"><i class="fas fa-search" style="color:#ff9900;"></i></div>
+      <div>
+        <strong>Search Engine Optimization</strong>
+        <div class="meta">Improving website visibility organically</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
         </div>
       </div>
     </section>
@@ -476,8 +649,7 @@
               <div class="timeline-item">
                 <h4>Honour's in Mathematics(on going)</h4>
                 <div class="meta">National University — 2021 - 2025</div>
-                <p style="color: var(--muted)">List skill/technologies here. You can change the icon above to any of the
-                  1500+ FontAwesome icons available.</p>
+                <p style="color: var(--muted)">-------------------------------------</p>
               </div>
               <div class="timeline-item">
                 <h4>Honour's in Mathematics(on going)</h4>
@@ -487,22 +659,22 @@
           </div>
 
           <div>
-            <h4>Experience</h4>
+            <h4>Traning</h4>
             <div class="timeline">
               <div class="timeline-item">
-                <h4>Graphic Designer</h4>
-                <div class="meta">Graphic Design A to Z</div>
-                <p style="color: var(--muted)">List skill/technologies here. Aenean commodo ligula eget dolor.</p>
+                <h4>Graphic Designe</h4>
+                <div class="meta">E-Learning & Earning LTD</div>
+                <!-- <p style="color: var(--muted)">------------------</p> -->
               </div>
 
               <div class="timeline-item">
                 <h4>Digital Marketing with Seo</h4>
-                <div class="meta">Dribbble Inc — 2018 - 2022</div>
+                <div class="meta">E-Learning & Earning LTD</div>
               </div>
 
               <div class="timeline-item">
-                <h4>HTML Developer</h4>
-                <div class="meta">Adobe Inc — 2017 - 2018</div>
+                <h4>Web Development</h4>
+                <div class="meta">E-Learning & Earning LTD</div>
               </div>
             </div>
           </div>
@@ -543,7 +715,7 @@
 
 
     <footer>
-      <div>Download CV · © <span id="year"></span> Md.Fuyad Hasan. All rights reserved.</div>
+      <div> © <span id="year"></span> Md.Fuyad Hasan. All rights reserved.</div>
     </footer>
   </main>
 
