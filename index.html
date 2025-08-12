@@ -1,90 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Md. Fuyad Hasan — Portfolio</title>
   <meta name="description" content="Portfolio of Md. Fuyad Hasan — Web and Graphic designer & developer" />
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <!-- Font Awesome (free) -->
-  <script src="https://kit.fontawesome.com/9c6d1b2c3d.js" crossorigin="anonymous"></script>
+  <!-- <script src="https://kit.fontawesome.com/9c6d1b2c3d.js" crossorigin="anonymous"></script> -->
+
   <style>
-    :root{
-      --bg:#326cca; /* deep */
-      --card:#2e487b;
-      --muted:#9aa4b2;
-      --accent:#7c5cff;
-      --glass: rgba(236, 91, 91, 0.04);
-      --radius:16px;
-      color-scheme: sky-blue;
+    :root {
+      --bg: #ff0000;
+      --card: #ff0000;
+      --muted: #000000;
+      --accent: #5542fd;
+      --glass: rgba(255, 255, 255, 0.596);
+      --radius: 16px;
+      color-scheme: rgb(255, 0, 0);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef8;background:linear-gradient(180deg,#1e4798 0%, #194588 100%);}
-    a{color:inherit;text-decoration:none}
-    header{display:flex;align-items:center;justify-content:space-between;padding:28px 36px;position:sticky;top:0;background:linear-gradient(180deg,rgba(236, 8, 8, 0.6),rgba(31, 120, 229, 0.1));backdrop-filter: blur(6px);z-index:50}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{width:48px;height:48px;border-radius:10px;object-fit:cover}
-    .brand h1{font-size:18px;margin:0}
-    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted)}
-    nav a:hover{color:#fff;background:var(--glass)}
-    .container{max-width:1100px;margin:36px auto;padding:0 20px}
 
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center}
-    .intro{padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:20px}
-    .intro h2{margin:0;font-size:28px}
-    .intro p.lead{color:var(--muted);line-height:1.6}
-    .cta{margin-top:18px;display:flex;gap:12px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;font-weight:700;background:linear-gradient(90deg,var(--accent),#55b6ff);color:#fff;border:none;cursor:pointer}
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    * {
+      box-sizing: border-box;
+    }
 
-    .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:18px;text-align:center}
-    .profile-card img{width:140px;height:140px;border-radius:999px;object-fit:cover;border:4px solid rgba(255,255,255,0.03)}
-    .profile-card h3{margin:12px 0 4px}
-    .profile-card p{margin:0;color:var(--muted)}
-    .socials{display:flex;gap:8px;justify-content:center;margin-top:12px}
-    .socials a{width:36px;height:36px;display:inline-grid;place-items:center;border-radius:8px;background:var(--glass)}
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+      color: #000000;
+      background: linear-gradient(180deg, #ffffff00 0%, #ffffff 100%);
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, rgb(4, 0, 255), rgba(31, 229, 31, 0));
+      backdrop-filter: blur(6px);
+      z-index: 999;
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .brand h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: #000000;
+      background: var(--glass);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 36px auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .intro {
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border-radius: 20px;
+    }
+
+    .intro h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .intro p.lead {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .cta {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), #55b6ff);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+    }
+
+    .profile-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      padding: 20px;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .profile-card img {
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 4px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .profile-card h3 {
+      margin: 12px 0 4px;
+    }
+
+    .profile-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .socials a {
+      width: 36px;
+      height: 36px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--glass);
+    }
 
     /* Sections */
-    section{margin-top:26px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px}
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .skills-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-    .skill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:600}
+    section {
+      margin-top: 26px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 17, 255, 0.452));
+      padding: 18px;
+      border-radius: 14px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .skill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(143, 142, 142, 0.301);
+      font-weight: 600;
+    }
 
     /* Resume / Experience */
-    .timeline{border-left:2px dashed rgba(255,255,255,0.03);padding-left:18px}
-    .timeline-item{margin-bottom:18px;padding-left:14px}
-    .timeline-item h4{margin:0}
-    .meta{color:var(--muted);font-size:13px}
+    .timeline {
+      border-left: 2px dashed rgb(0, 0, 0);
+      padding-left: 18px;
+    }
+
+    .timeline-item {
+      margin-bottom: 18px;
+      padding-left: 14px;
+    }
+
+    .timeline-item h4 {
+      margin: 0;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+    }
 
     /* Contact */
-    form{display:grid;gap:12px}
-    input,textarea{background:transparent;border:1px solid rgba(193, 34, 34, 0.946);padding:12px;border-radius:10px;color:#e6eef8}
-    textarea{min-height:120px}
-    footer{margin:36px 0 70px;color:var(--muted);text-align:center}
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    input,
+    textarea {
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.946);
+      padding: 12px;
+      border-radius: 10px;
+      color: #000000;
+    }
+
+    /* Placeholder color */
+    input::placeholder,
+    textarea::placeholder {
+      color: #1b1b1b;
+      opacity: 1;
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    footer {
+      margin: 3px 0 1px;
+      color: black;
+      text-align: center;
+    }
 
     /* Responsive */
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr;}
-      nav ul{display:none}
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        display: none;
+      }
     }
+
+    /* active menu css */
+    nav a.active {
+      color: #ff2323 !important;
+      background: var(--glass) !important;
+    }
+    /* for map add  */
+    .contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.map-container {
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Responsive: mobile view */
+@media (max-width: 768px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .map-container {
+    height: 250px;
+  }
+}
+
   </style>
 </head>
+
 <body>
   <header>
     <div class="brand">
-      <img src="photo/passport size photo.jpg" alt="Fuyad">
+      <img src="photo/passport size photo.jpg" alt="Fuyad" />
       <div>
-        <div style="font-size:12px;color:var(--muted);">Hire Me · Portfolio · Blog</div>
-        <h1 style="margin:0;font-size:16px">Md. Fuyad Hasan</h1>
+        <div style="font-size:12px; color: var(--muted);">Hire Me · Portfolio · Blog</div>
+        <h1 style="margin:0; font-size:16px;">Md. Fuyad Hasan</h1>
       </div>
     </div>
     <nav>
       <ul>
+        <li><a href="#hero">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#resume">Resume</a></li>
@@ -93,31 +342,36 @@
     </nav>
   </header>
 
-  <main class="container">
+  <main class="container" style="padding: 50px;">
+
     <!-- HERO -->
-    <section class="hero">
+    <section id="hero" class="hero">
       <div class="intro card">
         <h2>Hi, I am <strong>Fuyad</strong></h2>
-        <p class="lead">A graphic designer & developer with a passion for web design. I enjoy building simple, clean and slick websites that provide real value to the end user. Thousands of clients have procured exceptional results while working with me.</p>
+        <p class="lead">
+          A graphic designer & developer with a passion for web design. I enjoy building simple, clean and slick
+          websites that provide real value to the end user. Thousands of clients have procured exceptional results
+          while working with me.
+        </p>
         <div class="cta">
           <a class="btn" href="#contact"><i class="fa fa-paper-plane"></i> Contact</a>
           <a class="btn secondary" href="#resume">Download CV</a>
         </div>
 
-        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-          <div class="card" style="flex:1;min-width:160px">
+        <div style="margin-top:18px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <div class="card" style="flex: 1; min-width: 160px;">
             <strong>Name:</strong>
             <div>Md. Fuyad Hasan</div>
           </div>
-          <div class="card" style="flex:1;min-width:160px">
+          <div class="card" style="flex: 1; min-width: 200px;">
             <strong>Email:</strong>
             <div>fuadvisuals.bd@gmail.com</div>
           </div>
-          <div class="card" style="flex:1;min-width:160px">
+          <div class="card" style="flex: 1; min-width: 160px;">
             <strong>Date of birth:</strong>
             <div>02 January, 2002</div>
           </div>
-          <div class="card" style="flex:1;min-width:160px">
+          <div class="card" style="flex: 1; min-width: 160px;">
             <strong>From:</strong>
             <div>Mymensingh, Bangladesh</div>
           </div>
@@ -125,7 +379,7 @@
       </div>
 
       <aside class="profile-card">
-        <img src="photo/my pic.png" alt="Mary Hardy">
+        <img src="photo/my pic.png" alt="Mary Hardy" />
         <h3>Md. Fuyads Hasan</h3>
         <p>Graphic Designer & Web Developer</p>
         <div class="socials">
@@ -140,7 +394,11 @@
     <section id="about">
       <div class="card">
         <h3>About Me</h3>
-        <p style="color:var(--muted)">I'm a designer & developer with a passion for web design. I enjoy developing simple, clean and slick websites that provide real value to the end user. Delivering work within time and budget which meets clients requirements.</p>
+        <p style="color: var(--muted)">
+          I'm a designer & developer with a passion for web design. I enjoy developing simple, clean and slick websites
+          that provide real value to the end user. Delivering work within time and budget which meets clients
+          requirements.
+        </p>
       </div>
     </section>
 
@@ -148,7 +406,9 @@
     <section id="skills" class="grid-2">
       <div class="card">
         <h3>What I do</h3>
-        <p class="meta">Helping brands grow with unique visuals. From logos to posters – designed with passion and precision.</p>
+        <p class="meta">
+          Helping brands grow with unique visuals. From logos to posters – designed with passion and precision.
+        </p>
         <div class="skills-list">
           <span class="skill">HTML</span>
           <span class="skill">CSS</span>
@@ -163,34 +423,37 @@
 
       <div class="card">
         <h3>Featured skill blocks</h3>
-        <p class="meta">Below are short descriptions extracted from your source layout — you can edit the text or replace icons as needed.</p>
-        <div style="display:grid;gap:12px;margin-top:12px">
-          <div class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="font-size:22px"><i class="fab fa-js-square"></i></div>
+        <p class="meta">
+          Below are short descriptions extracted from your source layout — you can edit the text or replace icons as
+          needed.
+        </p>
+        <div style="display: grid; gap: 12px; margin-top: 12px;">
+          <div class="card" style="display: flex; align-items: center; gap: 12px;">
+            <div style="font-size: 22px"><i class="fab fa-js-square"></i></div>
             <div>
               <strong>Vanilla JavaScript</strong>
               <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
             </div>
           </div>
 
-          <div class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="font-size:22px"><i class="fab fa-react"></i></div>
+          <div class="card" style="display: flex; align-items: center; gap: 12px;">
+            <div style="font-size: 22px"><i class="fab fa-react"></i></div>
             <div>
               <strong>React</strong>
               <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
             </div>
           </div>
 
-          <div class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="font-size:22px"><i class="fab fa-node-js"></i></div>
+          <div class="card" style="display: flex; align-items: center; gap: 12px;">
+            <div style="font-size: 22px"><i class="fab fa-node-js"></i></div>
             <div>
               <strong>Node.js</strong>
               <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
             </div>
           </div>
 
-          <div class="card" style="display:flex;align-items:center;gap:12px">
-            <div style="font-size:22px">DB</div>
+          <div class="card" style="display: flex; align-items: center; gap: 12px;">
+            <div style="font-size: 22px">DB</div>
             <div>
               <strong>MongoDB</strong>
               <div class="meta">List skill/technologies here. Aenean commodo ligula eget dolor.</div>
@@ -198,7 +461,6 @@
           </div>
 
           <p>hello</p>
-
         </div>
       </div>
     </section>
@@ -207,14 +469,15 @@
     <section id="resume">
       <div class="card">
         <h3>A summary of My Resume</h3>
-        <div class="grid-2" style="margin-top:14px">
+        <div class="grid-2" style="margin-top: 14px;">
           <div>
             <h4>Education</h4>
             <div class="timeline">
               <div class="timeline-item">
                 <h4>Honour's in Mathematics(on going)</h4>
                 <div class="meta">National University — 2021 - 2025</div>
-                <p style="color:var(--muted)">List skill/technologies here. You can change the icon above to any of the 1500+ FontAwesome icons available.</p>
+                <p style="color: var(--muted)">List skill/technologies here. You can change the icon above to any of the
+                  1500+ FontAwesome icons available.</p>
               </div>
               <div class="timeline-item">
                 <h4>Honour's in Mathematics(on going)</h4>
@@ -229,7 +492,7 @@
               <div class="timeline-item">
                 <h4>Graphic Designer</h4>
                 <div class="meta">Graphic Design A to Z</div>
-                <p style="color:var(--muted)">List skill/technologies here. Aenean commodo ligula eget dolor.</p>
+                <p style="color: var(--muted)">List skill/technologies here. Aenean commodo ligula eget dolor.</p>
               </div>
 
               <div class="timeline-item">
@@ -241,12 +504,11 @@
                 <h4>HTML Developer</h4>
                 <div class="meta">Adobe Inc — 2017 - 2018</div>
               </div>
-
             </div>
           </div>
         </div>
 
-        <div style="margin-top:12px;text-align:right">
+        <div style="margin-top: 12px; text-align: right;">
           <a class="btn" href="#contact">Lets Connect</a>
         </div>
       </div>
@@ -254,27 +516,70 @@
 
     <!-- CONTACT -->
     <section id="contact">
-      <div class="card">
-        <h3>Contact</h3>
-        <p class="meta">Please fill out the form on this section to contact with me or call between 9:00 A.M and 8.00 P.M ET, Monday through Friday.</p>
-        <form onsubmit="event.preventDefault();alert('Message sent (demo)');">
-          <input type="text" name="name" placeholder="Your name" required>
-          <input type="email" name="email" placeholder="Your email" required>
-          <textarea name="message" placeholder="Message" required></textarea>
-          <div style="display:flex;gap:12px;justify-content:flex-end">
-            <button type="submit" class="btn">Submit</button>
-          </div>
-        </form>
+  <div class="card">
+    <h3>Contact</h3>
+    <p class="meta">
+      Please fill out the form on this section to contact with me or call between 9:00 A.M and 8.00 P.M ET, Monday through Friday.
+    </p>
+
+    <div class="contact-wrapper">
+      <!-- Left: Google Map -->
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1811.681010051351!2d90.40732898050297!3d24.74877378600686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37564fb8240e94ad%3A0xa001516643a68fe1!2sE-Learning%20%26%20Earning%20Ltd%2C%20Mymensingh!5e0!3m2!1sen!2sbd!4v1755018919150!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-    </section>
+
+      <!-- Right: Contact Form -->
+      <form onsubmit="event.preventDefault();alert('Message sent (demo)');" class="contact-form">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" placeholder="Message" required></textarea>
+        <div style="display: flex; gap: 12px; justify-content: flex-end;">
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
 
     <footer>
-      <div>Download CV · © <span id="year"></span> Mary Hardy. All rights reserved.</div>
+      <div>Download CV · © <span id="year"></span> Md.Fuyad Hasan. All rights reserved.</div>
     </footer>
   </main>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <!-- active menu script -->
+  <script>
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a");
+    const header = document.querySelector("header");
+
+    function setActiveLink() {
+      let current = "";
+      const scrollYPos = window.scrollY;
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - header.offsetHeight - 20;
+        const sectionHeight = section.offsetHeight;
+        if (scrollYPos >= sectionTop && scrollYPos < sectionTop + sectionHeight) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", setActiveLink);
+  </script>
+
 </body>
+
 </html>
