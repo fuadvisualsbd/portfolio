@@ -214,13 +214,23 @@
       text-align: center;
     }
 
-    .profile-card img {
-      width: 140px;
-      height: 140px;
-      border-radius: 999px;
-      object-fit: cover;
-      border: 4px solid rgba(255, 255, 255, 0.03);
-    }
+    .profile-card .profile-image-wrapper { /* এই wrapper এর জন্য নতুন স্টাইল */
+  position: relative;
+  width: 140px; /* ছবির আসল width */
+  height: 140px; /* ছবির আসল height */
+  border-radius: 999px; /* গোল করার জন্য */
+  overflow: hidden;
+  margin: 0 auto; /* ছবিটি মাঝখানে আনার জন্য */
+  border: 4px solid rgba(255, 255, 255, 0.03); /* আগের বর্ডারটি এখানে নিয়ে আসা হলো */
+}
+
+.profile-card img {
+  width: 100%; /* wrapper এর সাইজ নেবে */
+  height: 100%; /* wrapper এর সাইজ নেবে */
+  border-radius: 999px; /* গোল করার জন্য */
+  object-fit: cover;
+  /* বর্ডারটি এখন wrapper এ চলে গেছে, তাই এখানে দরকার নেই */
+}
 
     .profile-card h3 {
       margin: 12px 0 4px;
@@ -520,16 +530,20 @@ a:hover {
       </div>
 
       <aside class="profile-card">
-        <img src="photo/my pic.png" alt="Fuyad" />
-        <h3>Md. Fuyads Hasan</h3>
-        <p>Graphic Designer,Web Developer & Digital Marketer with Seo</p>
-        <div class="socials">
-          <a href="https://web.facebook.com/md.fuyad.hasan.600/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="https://wa.me/8801780679079" target="_blank" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.behance.net/mdfuyadhasan/" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
-          <a href="https://fuadvisuals-web.vercel.app/" target="_blank" title="Personal Website"><i class="fas fa-globe"></i></a>
-        </div>
-      </aside>
+  <div class="profile-image-wrapper"> <img src="photo/my pic.png" alt="Fuyad" />
+    <div class="orbit-path">
+      <div class="light-orb"></div>
+    </div>
+  </div>
+  <h3>Md. Fuyads Hasan</h3>
+  <p>Graphic Designer,Web Developer & Digital Marketer with Seo</p>
+  <div class="socials">
+    <a href="https://web.facebook.com/md.fuyad.hasan.600/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://wa.me/8801780679079" target="_blank" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.behance.net/mdfuyadhasan/" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+    <a href="https://fuadvisuals-web.vercel.app/" target="_blank" title="Personal Website"><i class="fas fa-globe"></i></a>
+  </div>
+</aside>
     </section>
 
     <!-- ABOUT -->
