@@ -68,11 +68,64 @@
     }
 
     .brand img {
-      width: 48px;
-      height: 60px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
+  /* width এবং height এখন wrapper দ্বারা নিয়ন্ত্রিত হবে */
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* image animation */
+/* --- প্রোফাইল ছবির অ্যানিমেশন --- */
+.profile-image-wrapper {
+  position: relative;
+  width: 48px;  /* আপনার ছবির আসল width */
+  height: 60px; /* আপনার ছবির আসল height */
+  /* border-radius এখানে দিলে ছবিটি ঠিকমতো গোল থাকে */
+  border-radius: 10px; 
+  /* অ্যানিমেশনের কোনো অংশ যেন বাইরে না যায় */
+  overflow: hidden; 
+}
+
+.orbit-path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* অ্যানিমেশনটি নিচ থেকে শুরু করার জন্য (180deg) */
+  transform: rotate(180deg); 
+  /* 5 সেকেন্ড ধরে ঘুরবে, linear (একই গতিতে), infinite (চলতেই থাকবে) */
+  animation: rotate-orbit 5s linear infinite;
+}
+
+.light-orb {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #00ffff; /* লাইটের রঙ (Cyan) */
+  border-radius: 50%;
+  /* Glow বা আভা তৈরির জন্য box-shadow */
+  box-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff, 0 0 24px #fff;
+  
+  /* এই পজিশনটি orbit-path এর সাপেক্ষে ছবির "নিচে" সেট করবে */
+  top: -4px; /* path-এর উপরে কিন্তু wrapper-এর বাইরে */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* অ্যানিমেশনের Keyframes */
+@keyframes rotate-orbit {
+  from {
+    /* নিচ থেকে শুরু (180deg) */
+    transform: rotate(180deg);
+  }
+  to {
+    /* এক চক্কর ঘুরে আবার নিচে আসা (180 + 360) */
+    transform: rotate(540deg); 
+  }
+}
+/* --- অ্যানিমেশন কোড শেষ --- */
 
     .brand h1 {
       font-size: 18px;
@@ -406,13 +459,20 @@ a:hover {
 
 <body>
   <header>
+
     <div class="brand">
-      <img src="photo/passport size photo.jpg" alt="Fuyad" />
-      <div>
-        <div style="font-size:12px; color: var(--muted);"> Portfolio · Blog</div>
-        <h1 style="margin:0; font-size:16px;">Md. Fuyad Hasan</h1>
-      </div>
+  <div class="profile-image-wrapper">
+    <img src="photo/passport size photo.jpg" alt="Fuyad" />
+    <div class="orbit-path">
+      <div class="light-orb"></div>
     </div>
+  </div>
+  <div>
+    <div style="font-size:12px; color: var(--muted);"> Portfolio · Blog</div>
+    <h1 style="margin:0; font-size:16px;">Md. Fuyad Hasan</h1>
+  </div>
+</div>
+
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
