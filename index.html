@@ -339,18 +339,19 @@
       margin-top: 4px;
     }
 
-    /* --- TOOLS SECTION CSS --- */
+    /* --- TOOLS SECTION CSS (UPDATED FOR SQUARE IMAGE) --- */
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      /* minmax 250px রাখা হয়েছে যাতে কার্ডগুলো সুন্দর সাইজের হয় */
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 24px;
       margin-top: 20px;
     }
 
     .tool-card {
       display: block;
       background: #fafafa;
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
       border: 1px solid #eee;
       transition: all 0.3s ease;
@@ -359,42 +360,46 @@
 
     .tool-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       border-color: var(--accent);
     }
 
+    /* Square Image Container */
     .tool-image {
       width: 100%;
-      height: 180px;
+      /* এটি ইমেজ কন্টেইনারকে সবসময় বর্গাকার (Square) রাখবে */
+      aspect-ratio: 1 / 1; 
+      background: #ffffff; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
-      position: relative;
+      border-bottom: 1px solid #f0f0f0;
     }
 
     .tool-image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .tool-card:hover .tool-image img {
-      transform: scale(1.05);
+      /* স্কয়্যার ছবি পুরোটা দেখাবে এবং কাটবে না */
+      object-fit: cover; 
     }
 
     .tool-info {
-      padding: 16px;
+      padding: 18px;
     }
 
     .tool-info h4 {
       margin: 0;
       color: #000;
       font-size: 18px;
+      font-weight: 700;
     }
 
     .tool-info p {
-      margin: 5px 0 0;
+      margin: 6px 0 0;
       color: var(--text-muted);
       font-size: 14px;
+      line-height: 1.5;
     }
 
     /* --- Contact --- */
@@ -674,8 +679,8 @@
         <div class="tools-grid">
           
           <a href="https://microstock-csv-by-fuadvisuals.streamlit.app/" target="_blank" class="tool-card">
-            <div class="tool-image" style="background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
-              <img src="photo/icon.ico" alt="Microstock CSV Tool" style="object-fit: contain; padding: 30px;" onerror="this.src='https://via.placeholder.com/400x300?text=Microstock+Tool'"/> 
+            <div class="tool-image">
+              <img src="photo/icon.ico" alt="Microstock CSV Tool" onerror="this.src='https://via.placeholder.com/400x400?text=Tool+Image'"/> 
             </div>
             <div class="tool-info">
               <h4>Microstock CSV by Fuadvisuals</h4>
