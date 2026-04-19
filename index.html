@@ -1,746 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
   <title>Md. Fuyad Hasan — Portfolio</title>
-  <meta name="description" content="Fuad Visuals Portfolio - Web Design, Graphics, and Creative Projects." />
+  <meta name="description" content="Fuad Visuals Portfolio - Web Design, Graphics, and Creative Projects by Md. Fuyad Hasan." />
   <meta name="keywords" content="Fuad, Fuad Visuals, portfolio, web design, graphics, Microstock tools" />
   <meta name="author" content="Md. Fuyad Hasan" />
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <style>
-    :root {
-      --bg: #ffffff;
-      --card-bg: rgba(255, 255, 255, 0.8);
-      --text-main: #000000;
-      --text-muted: #555555;
-      --accent: #5542fd;
-      --accent-hover: #3e2fce;
-      --glass: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.5);
-      --radius: 16px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: var(--text-main);
-      background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--text-main);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    /* --- Header & Nav --- */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 30px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      z-index: 1000;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    }
-
-    .brand {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    /* Profile Orbit Animation */
-    .profile-image-wrapper {
-      position: relative;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .profile-image-wrapper img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      z-index: 2;
-    }
-
-    .orbit-path {
-      position: absolute;
-      top: -5px;
-      left: -5px;
-      width: calc(100% + 10px);
-      height: calc(100% + 10px);
-      border-radius: 50%;
-      animation: rotate-orbit 4s linear infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .light-orb {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #f57215;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #e99311, 0 0 16px #d1f06a;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    @keyframes rotate-orbit {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    nav ul {
-      display: flex;
-      gap: 15px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav a {
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-weight: 500;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    nav a:hover, nav a.active {
-      color: #fff !important;
-      background: var(--accent);
-      box-shadow: 0 4px 10px rgba(85, 66, 253, 0.3);
-    }
-
-    /* --- Layout --- */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 100px 20px 40px;
-    }
-
-    section {
-      margin-bottom: 60px;
-      scroll-margin-top: 100px;
-    }
-
-    /* --- Cards --- */
-    .card {
-      background: #ffffff;
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-2px);
-    }
-
-    /* --- Hero Section --- */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 350px;
-      gap: 40px;
-      align-items: start;
-    }
-
-    .intro h2 {
-      font-size: 36px;
-      margin-bottom: 16px;
-      background: linear-gradient(90deg, #000, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .lead {
-      color: var(--text-muted);
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: 600;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 15px;
-    }
-
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(85, 66, 253, 0.3);
-      color: white;
-      text-decoration: none;
-    }
-
-    .btn.secondary {
-      background: transparent;
-      border: 2px solid #eee;
-      color: var(--text-muted);
-    }
-
-    .btn.secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: transparent;
-    }
-
-    /* Profile Sidebar */
-    .profile-card {
-      text-align: center;
-      background: #fff;
-    }
-
-    .profile-card .profile-image-wrapper {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto 20px;
-      border: 5px solid #fff;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .socials a {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #f5f5f5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-size: 18px;
-    }
-
-    .socials a:hover {
-      background: var(--accent);
-      color: #fff;
-      transform: translateY(-3px);
-    }
-
-    /* --- Skills --- */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .skill {
-      padding: 8px 16px;
-      border-radius: 50px;
-      background: #f0f4f8;
-      color: #333;
-      font-weight: 500;
-      font-size: 13px;
-      transition: all 0.3s ease;
-      cursor: default;
-    }
-
-    .skill:hover {
-      background: var(--accent);
-      color: white;
-      transform: scale(1.05);
-    }
-
-    .skill-block {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px;
-      background: #fafafa;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #eee;
-    }
-
-    /* --- Resume --- */
-    .timeline {
-      border-left: 2px solid #e0e0e0;
-      padding-left: 20px;
-      margin-left: 10px;
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 30px;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -26px;
-      top: 5px;
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      border-radius: 50%;
-      border: 3px solid #fff;
-      box-shadow: 0 0 0 1px #e0e0e0;
-    }
-
-    .meta {
-      font-size: 13px;
-      color: #888;
-      margin-top: 4px;
-    }
-
-    /* --- TOOLS SECTION CSS (UPDATED FOR SQUARE IMAGE) --- */
-    .tools-grid {
-      display: grid;
-      /* minmax 250px রাখা হয়েছে যাতে কার্ডগুলো সুন্দর সাইজের হয় */
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 24px;
-      margin-top: 20px;
-    }
-
-    .tool-card {
-      display: block;
-      background: #fafafa;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid #eee;
-      transition: all 0.3s ease;
-      text-decoration: none !important;
-    }
-
-    .tool-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      border-color: var(--accent);
-    }
-
-    /* Square Image Container */
-    .tool-image {
-      width: 100%;
-      /* এটি ইমেজ কন্টেইনারকে সবসময় বর্গাকার (Square) রাখবে */
-      aspect-ratio: 1 / 1; 
-      background: #ffffff; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-bottom: 1px solid #f0f0f0;
-    }
-
-    .tool-image img {
-      width: 100%;
-      height: 100%;
-      /* স্কয়্যার ছবি পুরোটা দেখাবে এবং কাটবে না */
-      object-fit: cover; 
-    }
-
-    .tool-info {
-      padding: 18px;
-    }
-
-    .tool-info h4 {
-      margin: 0;
-      color: #000;
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .tool-info p {
-      margin: 6px 0 0;
-      color: var(--text-muted);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    /* --- Contact --- */
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-top: 20px;
-    }
-
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      border: none;
-    }
-
-    form input, form textarea {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #fafafa;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    form input:focus, form textarea:focus {
-      border-color: var(--accent);
-      background: #fff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 0;
-      color: var(--text-muted);
-      font-size: 14px;
-      border-top: 1px solid #eee;
-      margin-top: 40px;
-    }
-
-    /* --- Mobile Responsive --- */
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-      .profile-card {
-        order: -1; 
-      }
-      .grid-2, .contact-wrapper {
-        grid-template-columns: 1fr;
-      }
-      nav ul {
-        display: none; 
-      }
-      header {
-        justify-content: center;
-      }
-      .brand {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="icon" href="photo/icon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
 </head>
-
 <body>
 
-  <header>
-    <div class="brand">
-      <div class="profile-image-wrapper">
-        <img src="photo/passport size photo.jpg" alt="Fuyad" />
-        <div class="orbit-path">
-          <div class="light-orb"></div>
+  <!-- Preloader -->
+  <div class="preloader"><div class="preloader-spinner"></div></div>
+
+  <!-- Particle Background -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <a href="#home" class="nav-brand">
+      <img src="photo/passport size photo.jpg" alt="Fuyad" class="nav-avatar" />
+      <span class="nav-name">Fuyad Hasan</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#resume">Resume</a>
+    <a href="#projects">Projects</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="hero-greeting reveal">
+            <span class="wave">👋</span> Hello, I'm
+          </p>
+          <h1 class="hero-name reveal reveal-delay-1">
+            Md. <span class="gradient-text">Fuyad Hasan</span>
+          </h1>
+          <div class="hero-roles reveal reveal-delay-2">
+            <span id="typed-text"></span><span class="typed-cursor">|</span>
+          </div>
+          <p class="hero-desc reveal reveal-delay-3">
+            A passionate graphic designer & developer crafting beautiful, functional, and user-centered digital experiences. I turn ideas into clean, bold visuals and code.
+          </p>
+          <div class="hero-btns reveal reveal-delay-4">
+            <a href="#contact" class="btn-primary">
+              <i class="fas fa-paper-plane"></i> Hire Me
+            </a>
+            <a href="#projects" class="btn-outline">
+              <i class="fas fa-eye"></i> View Work
+            </a>
+          </div>
+          <div class="hero-stats reveal reveal-delay-5">
+            <div class="stat-item">
+              <div class="stat-number" data-count="5" data-suffix="+">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="50" data-suffix="+">0</div>
+              <div class="stat-label">Projects Done</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-count="30" data-suffix="+">0</div>
+              <div class="stat-label">Happy Clients</div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <h1 style="margin:0; font-size:18px; font-weight:700;">Md. Fuyad Hasan</h1>
-        <div style="font-size:12px; color: var(--text-muted);">Portfolio · Blog</div>
+        <div class="hero-profile reveal">
+          <div class="profile-glow"></div>
+          <div class="profile-ring">
+            <img src="photo/my pic.png" alt="Md. Fuyad Hasan" />
+          </div>
+          <div class="profile-badge">✦</div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#tools">Tools</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="container">
-
-    <section id="home" class="hero">
-      <div class="intro card">
-        <h2>Hi, I am <strong>Fuyad</strong></h2>
-        <p class="lead">
-          A graphic designer & developer with a passion for web design. I enjoy building simple, clean, and slick
-          websites that provide real value to the end-user.
-        </p>
-        <div class="cta">
-          <a class="btn" href="#contact"><i class="fa fa-paper-plane"></i> Hire Me</a>
-          <a class="btn secondary" href="#resume"><i class="fa fa-download"></i> Download CV</a>
-        </div>
-
-        <div style="margin-top:30px; display: flex; gap: 20px; flex-wrap: wrap; border-top:1px solid #eee; padding-top:20px;">
-          <div>
-            <strong>Email:</strong>
-            <div style="color:var(--text-muted)">fuadvisuals.bd@gmail.com</div>
-          </div>
-          <div>
-            <strong>Location:</strong>
-            <div style="color:var(--text-muted)">Mymensingh, Bangladesh</div>
-          </div>
-        </div>
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Know Me Better</h2>
       </div>
-
-      <aside class="profile-card card">
-        <div class="profile-image-wrapper">
-          <img src="photo/my pic.png" alt="Fuyad" />
-          <div class="orbit-path">
-            <div class="light-orb"></div>
-          </div>
+      <div class="about-content">
+        <div class="glass-card reveal">
+          <p class="about-text">
+            I'm a designer & developer with a passion for web design. I enjoy developing simple, clean and slick websites that provide real value to the end user. Delivering work within time and budget which meets clients requirements.
+          </p>
+          <p class="about-text" style="margin-top: 16px;">
+            With expertise in both graphic design and web development, I bridge the gap between aesthetics and functionality. Every project is an opportunity to create something unique and impactful.
+          </p>
         </div>
-        <h3>Md. Fuyad Hasan</h3>
-        <p style="color: var(--text-muted);">Graphic Designer & Web Developer</p>
-        <div class="socials">
-          <a href="https://web.facebook.com/md.fuyad.hasan.600/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://wa.me/8801780679079" target="_blank"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.behance.net/mdfuyadhasan/" target="_blank"><i class="fab fa-behance"></i></a>
-          <a href="https://fuadvisuals-web.vercel.app/" target="_blank"><i class="fas fa-globe"></i></a>
-        </div>
-      </aside>
-    </section>
-
-    <section id="about">
-      <div class="card">
-        <h3>About Me</h3>
-        <p style="color: var(--text-muted); font-size: 16px;">
-          I'm a designer & developer with a passion for web design. I enjoy developing simple, clean and slick websites
-          that provide real value to the end user. Delivering work within time and budget which meets clients
-          requirements.
-        </p>
-      </div>
-    </section>
-
-    <section id="skills" class="grid-2">
-      <div class="card">
-        <h3>What I do</h3>
-        <p class="meta">Helping brands grow with unique visuals.</p>
-        
-        <div style="margin: 20px 0;">
-          <a href="https://fuadvisuals-web.vercel.app/book%20cover.html" target="_blank" class="btn" 
-             style="width:100%; justify-content:center; background:#007bff !important;">
-             See My Projects
-          </a>
-        </div>
-
-        <div class="skills-list">
-          <span class="skill">HTML</span>
-          <span class="skill">CSS</span>
-          <span class="skill">JavaScript</span>
-          <span class="skill">React</span>
-          <span class="skill">Node.js</span>
-          <span class="skill">Adobe Photoshop</span>
-          <span class="skill">Adobe Illustrator</span>
-          <span class="skill">SEO</span>
-          <span class="skill">Social Media Marketing</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Featured Skills</h3>
-        <div style="margin-top: 15px;">
-          
-          <div class="skill-block">
-            <i class="fab fa-html5" style="color: #e44d26; font-size: 28px;"></i>
-            <div>
-              <strong>HTML5 & CSS3</strong>
-              <div class="meta">Semantic and responsive web structure</div>
+        <div class="glass-card reveal reveal-delay-1">
+          <div class="about-info-grid">
+            <div class="info-item">
+              <div class="label">Name</div>
+              <div class="value">Md. Fuyad Hasan</div>
+            </div>
+            <div class="info-item">
+              <div class="label">Email</div>
+              <div class="value" style="font-size:13px;">fuadvisuals.bd@gmail.com</div>
+            </div>
+            <div class="info-item">
+              <div class="label">Location</div>
+              <div class="value">Mymensingh, BD</div>
+            </div>
+            <div class="info-item">
+              <div class="label">Availability</div>
+              <div class="value" style="color: #00d4ff;">Open to Work</div>
             </div>
           </div>
-
-          <div class="skill-block">
-            <i class="fab fa-js-square" style="color: #f7df1e; font-size: 28px;"></i>
-            <div>
-              <strong>JavaScript & React</strong>
-              <div class="meta">Interactive dynamic web applications</div>
-            </div>
-          </div>
-
-          <div class="skill-block">
-            <i class="fas fa-paint-brush" style="color: #ff6f61; font-size: 28px;"></i>
-            <div>
-              <strong>Graphic Design</strong>
-              <div class="meta">Logos, Posters, and Brand Identity</div>
-            </div>
-          </div>
-
-          <div class="skill-block">
-            <i class="fas fa-search" style="color: #4285f4; font-size: 28px;"></i>
-            <div>
-              <strong>Digital Marketing</strong>
-              <div class="meta">SEO, Google Ads, and Social Media</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="resume">
-      <div class="card">
-        <h3>Resume Summary</h3>
-        <div class="grid-2" style="margin-top: 20px;">
-          
-          <div>
-            <h4 style="margin-bottom:15px; color: var(--accent);">Education</h4>
-            <div class="timeline">
-              <div class="timeline-item">
-                <h4>Honour's in Mathematics</h4>
-                <div class="meta">National University — 2021 - Present</div>
-              </div>
-              <div class="timeline-item">
-                <h4>Higher Secondary</h4>
-                <div class="meta">Science Group — 2019</div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h4 style="margin-bottom:15px; color: var(--accent);">Training</h4>
-            <div class="timeline">
-              <div class="timeline-item">
-                <h4>Graphic Design</h4>
-                <div class="meta">Learning & Earning Development Project (LEDP)</div>
-              </div>
-              <div class="timeline-item">
-                <h4>Web Development</h4>
-                <div class="meta">Learning & Earning Development Project (LEDP)</div>
-              </div>
-            </div>
-          </div>
-        
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="card">
-        <h3>Recent Projects</h3>
-        <p class="meta">Featured works from Behance</p>
-
-        <div style="margin-top:20px; display:grid; gap:20px;">
-          <iframe src="https://www.behance.net/embed/project/232318319?ilo0=1" height="600" width="100%" allowfullscreen loading="lazy" frameborder="0" style="border-radius:12px;"></iframe>
-          <iframe src="https://www.behance.net/embed/project/232123691?ilo0=1" height="600" width="100%" allowfullscreen loading="lazy" frameborder="0" style="border-radius:12px;"></iframe>
-          <iframe src="https://www.behance.net/embed/project/234023059?ilo0=1" height="600" width="100%" allowfullscreen loading="lazy" frameborder="0" style="border-radius:12px;"></iframe>
-        </div>
-
-        <div style="margin-top: 20px; text-align:center;">
-          <a href="https://www.behance.net/mdfuyadhasan" target="_blank" class="btn">
-            View All Projects on Behance
+          <a href="#contact" class="btn-primary" style="margin-top: 24px; width: 100%; justify-content: center;">
+            <i class="fas fa-envelope"></i> Let's Talk
           </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="tools">
-      <div class="card">
-        <h3>My Tools</h3>
-        <p class="meta">Software and tools I've developed.</p>
-
-        <div class="tools-grid">
-          
-          <a href="https://microstock-csv-by-fuadvisuals.streamlit.app/" target="_blank" class="tool-card">
-            <div class="tool-image">
-              <img src="photo/icon.ico" alt="Microstock CSV Tool" onerror="this.src='https://via.placeholder.com/400x400?text=Tool+Image'"/> 
-            </div>
-            <div class="tool-info">
-              <h4>Microstock CSV by Fuadvisuals</h4>
-              <p>Automate your microstock metadata workflow easily.</p>
-            </div>
-          </a>
-          
-        </div>
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">My Skills</div>
+        <h2 class="section-title">What I Do Best</h2>
+        <p class="section-subtitle">Helping brands grow with unique visuals & powerful web experiences.</p>
       </div>
-    </section>
-
-    <section id="contact">
-      <div class="card">
-        <h3>Get in Touch</h3>
-        <p class="meta">Feel free to contact me for any project or collaboration.</p>
-
-        <div class="contact-wrapper">
-          <div class="map-container" style="height: 350px;">
-             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57903.02583821205!2d90.37274026639556!3d24.74714923337922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37564f1007ad9b59%3A0x79a5903885814634!2sMymensingh!5e0!3m2!1sen!2sbd!4v1717399589632!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="skills-grid">
+        <div class="glass-card reveal">
+          <h4><i class="fas fa-code"></i> Development</h4>
+          <div class="skill-bars">
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>HTML5 & CSS3</span><span>90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>JavaScript</span><span>75%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>React / Next.js</span><span>65%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>Node.js</span><span>60%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="60%"></div></div>
+            </div>
           </div>
-
-          <form onsubmit="event.preventDefault(); alert('Message sent!');" style="display: flex; flex-direction: column; gap: 15px;">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <input type="email" name="email" placeholder="Your Email" required />
-            <textarea name="message" placeholder="Write your message here..." rows="5" required></textarea>
-            <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
-          </form>
+          <div class="skill-tags" style="margin-top: 20px;">
+            <span class="skill-tag reveal reveal-delay-1"><i class="fab fa-html5"></i> HTML</span>
+            <span class="skill-tag reveal reveal-delay-2"><i class="fab fa-css3-alt"></i> CSS</span>
+            <span class="skill-tag reveal reveal-delay-3"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="skill-tag reveal reveal-delay-4"><i class="fab fa-react"></i> React</span>
+            <span class="skill-tag reveal reveal-delay-5"><i class="fab fa-node-js"></i> Node.js</span>
+          </div>
+        </div>
+        <div class="glass-card reveal reveal-delay-2">
+          <h4><i class="fas fa-palette"></i> Design & Marketing</h4>
+          <div class="skill-bars">
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>Adobe Photoshop</span><span>95%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>Adobe Illustrator</span><span>90%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>SEO</span><span>80%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="skill-bar-header"><span>Social Media Marketing</span><span>75%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75%"></div></div>
+            </div>
+          </div>
+          <div class="skill-tags" style="margin-top: 20px;">
+            <span class="skill-tag reveal reveal-delay-1"><i class="fas fa-paint-brush"></i> Photoshop</span>
+            <span class="skill-tag reveal reveal-delay-2"><i class="fas fa-pen-nib"></i> Illustrator</span>
+            <span class="skill-tag reveal reveal-delay-3"><i class="fas fa-search"></i> SEO</span>
+            <span class="skill-tag reveal reveal-delay-4"><i class="fas fa-bullhorn"></i> Marketing</span>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>
-      <div>© <span id="year"></span> <strong>Md. Fuyad Hasan</strong>. All rights reserved.</div>
-    </footer>
+  <!-- ===== RESUME ===== -->
+  <section id="resume">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Resume</div>
+        <h2 class="section-title">My Journey</h2>
+      </div>
+      <div class="timeline-grid">
+        <div class="timeline-col reveal">
+          <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h5>Honour's in Mathematics</h5>
+              <p class="meta">National University — 2021 - Present</p>
+            </div>
+            <div class="timeline-item">
+              <h5>Higher Secondary (HSC)</h5>
+              <p class="meta">Science Group — 2019</p>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-col reveal reveal-delay-2">
+          <h4><i class="fas fa-briefcase"></i> Training</h4>
+          <div class="timeline">
+            <div class="timeline-item">
+              <h5>Graphic Design</h5>
+              <p class="meta">Learning & Earning Development Project (LEDP)</p>
+            </div>
+            <div class="timeline-item">
+              <h5>Web Development</h5>
+              <p class="meta">Learning & Earning Development Project (LEDP)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  </main>
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-title">Recent Projects</h2>
+        <p class="section-subtitle">Featured works from Behance</p>
+      </div>
+      <div class="projects-container">
+        <div class="project-embed reveal">
+          <iframe src="https://www.behance.net/embed/project/232318319?ilo0=1" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="project-embed reveal reveal-delay-1">
+          <iframe src="https://www.behance.net/embed/project/232123691?ilo0=1" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="project-embed reveal reveal-delay-2">
+          <iframe src="https://www.behance.net/embed/project/234023059?ilo0=1" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="projects-cta reveal">
+        <a href="https://www.behance.net/mdfuyadhasan" target="_blank" class="btn-primary">
+          <i class="fab fa-behance"></i> View All on Behance
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- ===== TOOLS ===== -->
+  <section id="tools">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">My Tools</div>
+        <h2 class="section-title">Software & Tools</h2>
+        <p class="section-subtitle">Tools I've built to make workflows smarter.</p>
+      </div>
+      <div class="tools-grid">
+        <a href="https://microstock-csv-by-fuadvisuals.streamlit.app/" target="_blank" class="tool-card reveal">
+          <div class="tool-image">
+            <img src="photo/icon.ico" alt="Microstock CSV Tool" />
+          </div>
+          <div class="tool-info">
+            <h4>Microstock CSV by Fuadvisuals</h4>
+            <p>Automate your microstock metadata workflow easily.</p>
+          </div>
+        </a>
+        <a href="https://motionsvg.vercel.app/" target="_blank" class="tool-card reveal reveal-delay-1">
+          <div class="tool-image">
+            <img src="photo/motionsvg.png" alt="MotionSVG" onerror="this.parentElement.innerHTML='<div style=&quot;font-size:48px;display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#7c5cfc,#00d4ff);color:#fff;&quot;><i class=&quot;fas fa-video&quot;></i></div>'" />
+          </div>
+          <div class="tool-info">
+            <h4>MotionSVG — AI Video Converter</h4>
+            <p>AI-powered SVG animation to video converter. Generate & export stunning animations.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("nav a");
-    
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 150; 
-        if (pageYOffset >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-subtitle">Feel free to reach out for projects or collaboration.</p>
+      </div>
+      <div class="contact-info-centered reveal">
+        <div class="contact-info" style="max-width: 600px; margin: 0 auto;">
+          <div class="contact-item">
+            <div class="icon"><i class="fas fa-envelope"></i></div>
+            <div class="details">
+              <div class="label">Email</div>
+              <div class="value">fuadvisuals.bd@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="details">
+              <div class="label">Location</div>
+              <div class="value">Mymensingh, Bangladesh</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="details">
+              <div class="label">WhatsApp</div>
+              <div class="value">+880 1780 679079</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-socials" style="margin-top: 24px; justify-content: center;">
+          <a href="https://web.facebook.com/md.fuyad.hasan.600/" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/8801780679079" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://www.behance.net/mdfuyadhasan/" target="_blank" class="social-link"><i class="fab fa-behance"></i></a>
+          <a href="https://github.com/fuadvisualsbd" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      navLinks.forEach((link) => {
-        link.classList.remove("active");
-        if (link.getAttribute("href").includes(current)) {
-          link.classList.add("active");
-        }
-      });
-    });
-  </script>
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> <span class="gradient-text">Md. Fuyad Hasan</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
 
 </body>
 </html>
