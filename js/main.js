@@ -135,7 +135,7 @@ window.addEventListener('load', () => {
 (function initTyping() {
   const el = document.getElementById('typed-text');
   if (!el) return;
-  const roles = ['Graphic Designer', 'Web Developer', 'Creative Thinker', 'UI/UX Enthusiast'];
+  const roles = ['Creative Technology Studio', 'AI & Automation', 'SaaS Development', 'Software Solutions'];
   let roleIndex = 0, charIndex = 0, isDeleting = false;
   function type() {
     const current = roles[roleIndex];
