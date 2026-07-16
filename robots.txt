@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://fuadvisualsbd.github.io/portfolio/sitemap.xml
+Sitemap: https://fv-labs.vercel.app/sitemap.xml
