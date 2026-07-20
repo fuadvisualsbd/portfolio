@@ -399,21 +399,21 @@ section { padding: 100px 0; position: relative; }
 .timeline-item .meta { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
 /* ===== PROJECTS ===== */
-.projects-container { display: flex; flex-direction: column; gap: 30px; }
+.projects-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
 .project-embed {
   border-radius: var(--radius); overflow: hidden;
   border: 1px solid var(--border-glass);
   transition: var(--transition);
 }
 .project-embed:hover { border-color: rgba(124,92,252,0.3); transform: translateY(-4px); }
-.project-embed iframe { width: 100%; height: 500px; border: none; border-radius: var(--radius); }
+.project-embed iframe { width: 100%; height: 400px; border: none; border-radius: var(--radius); }
 .projects-cta { text-align: center; margin-top: 30px; }
 
 /* ===== TOOLS ===== */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 .tool-card {
   display: block;
@@ -443,9 +443,9 @@ section { padding: 100px 0; position: relative; }
 }
 .tool-card .tool-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
 .tool-card:hover .tool-image img { transform: scale(1.05); }
-.tool-card .tool-info { padding: 20px; position: relative; z-index: 1; }
-.tool-card .tool-info h4 { font-size: 17px; font-weight: 700; }
-.tool-card .tool-info p { color: var(--text-secondary); font-size: 14px; margin-top: 6px; }
+.tool-card .tool-info { padding: 16px; position: relative; z-index: 1; }
+.tool-card .tool-info h4 { font-size: 15px; font-weight: 700; }
+.tool-card .tool-info p { color: var(--text-secondary); font-size: 13px; margin-top: 6px; }
 
 /* ===== CONTACT ===== */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -558,7 +558,7 @@ section { padding: 100px 0; position: relative; }
   .hero-name { font-size: 38px; }
   .profile-ring { width: 220px; height: 220px; }
   .profile-glow { width: 240px; height: 240px; }
-  .about-content, .skills-grid, .timeline-grid, .contact-grid { grid-template-columns: 1fr; }
+  .about-content, .skills-grid, .timeline-grid, .projects-container, .contact-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 28px; }
   .cursor-dot, .cursor-ring { display: none; }
 }
