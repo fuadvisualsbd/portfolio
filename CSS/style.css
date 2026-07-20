@@ -201,7 +201,7 @@ section { padding: 100px 0; position: relative; }
 
 /* ===== HERO ===== */
 .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; }
-.hero-grid { display: grid; grid-template-columns: 1fr 380px; gap: 60px; align-items: center; width: 100%; }
+.hero-grid { display: grid; grid-template-columns: 1fr 340px 1fr; gap: 40px; align-items: center; width: 100%; }
 
 .hero-greeting {
   font-size: 18px; color: var(--text-secondary);
