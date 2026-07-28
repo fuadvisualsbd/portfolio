@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Offline Metadata Cleaner | FV Labs</title>
+  <meta name="description" content="Download Offline Metadata Cleaner. A fast, privacy-focused offline tool to securely remove EXIF data from your assets." />
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="icon" href="photo/passport size photo.jpg" type="image/jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
+  <style>
+    .plugin-hero {
+      padding: 120px 0 60px;
+      text-align: center;
+      background: radial-gradient(circle at top, rgba(31, 64, 55, 0.25) 0%, transparent 50%);
+    }
+    .plugin-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #1f4037, #99f2c8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .plugin-description {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+    .plugin-content {
+      max-width: 800px;
+      margin: 0 auto 80px;
+      padding: 40px;
+    }
+    .install-section {
+      margin-bottom: 40px;
+    }
+    .install-section h3 {
+      font-size: 24px;
+      color: #99f2c8;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .install-steps {
+      list-style: none;
+      padding: 0;
+    }
+    .install-steps li {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+    .install-steps li::before {
+      content: counter(step-counter);
+      counter-increment: step-counter;
+      position: absolute;
+      left: 0;
+      top: -2px;
+      width: 28px;
+      height: 28px;
+      background: rgba(153, 242, 200, 0.1);
+      border: 1px solid rgba(153, 242, 200, 0.3);
+      color: #99f2c8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .install-list {
+      counter-reset: step-counter;
+    }
+    .bullet-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background: transparent;
+      border: none;
+      color: #99f2c8;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #1f4037, #99f2c8);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(31, 64, 55, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px rgba(31, 64, 55, 0.5);
+      color: #fff;
+    }
+    .note-box {
+      background: rgba(31, 64, 55, 0.4);
+      border-left: 4px solid #99f2c8;
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .note-box p {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .format-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .format-tag {
+      background: rgba(153, 242, 200, 0.1);
+      border: 1px solid rgba(153, 242, 200, 0.2);
+      color: #99f2c8;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" style="background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(10px);">
+    <a href="index.html" class="nav-brand">
+      <img src="photo/passport size photo.jpg" alt="Md. Fuyad Hasan" class="nav-avatar" />
+      <span class="nav-name">FV Labs</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#fv-labs" class="active">Products</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PLUGIN HEADER ===== -->
+  <section class="plugin-hero">
+    <div class="container">
+      <div style="font-size: 64px; margin-bottom: 20px; background: linear-gradient(135deg, #1f4037, #99f2c8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <h1 class="plugin-title">Offline Metadata Cleaner</h1>
+      <p class="plugin-description">A fast, privacy-focused offline tool to securely remove EXIF data from your assets. Powered by ExifTool.</p>
+      
+      <a href="https://drive.google.com/file/d/1YVeC7OueVsX7772FxOIgMgnXeP3ONWV6/view?usp=sharing" target="_blank" class="download-btn">
+        <i class="fas fa-download"></i> Download Tool
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== INSTRUCTIONS ===== -->
+  <section>
+    <div class="container">
+      <div class="glass-card plugin-content">
+        
+        <div class="note-box">
+          <p>এই টুল দিয়ে যেকোনো folder-এ right-click করলেই সব image ও video file-এর metadata clean হয়ে যাবে। <strong>ColorSpace tag preserve থাকবে।</strong></p>
+        </div>
+
+        <div class="install-section">
+          <h3><i class="fas fa-download"></i> Install করতে</h3>
+          <ul class="install-steps install-list">
+            <li><strong>"Install.bat"</strong> ফাইলে Right-click করুন</li>
+            <li><strong>"Run as administrator"</strong> সিলেক্ট করুন</li>
+            <li>UAC prompt আসলে <strong>"Yes"</strong> দিন</li>
+            <li>ব্যস! Installation complete!</li>
+          </ul>
+        </div>
+
+        <div class="install-section">
+          <h3><i class="fas fa-magic"></i> ব্যবহার</h3>
+          <ul class="install-steps bullet-list">
+            <li>যেকোনো folder-এ right-click করুন</li>
+            <li><strong>"🧹 Clean Metadata"</strong>-এ ক্লিক করুন</li>
+            <li>CMD window-তে progress দেখাবে</li>
+            <li>কাজ শেষ হলে any key press করুন</li>
+          </ul>
+          
+          <div style="margin-top: 15px; padding-left: 10px; border-left: 2px solid rgba(255,255,255,0.1);">
+            <p style="color: var(--text-secondary); margin-bottom: 5px;"><strong>Windows 11 এ:</strong></p>
+            <p style="color: var(--text-primary); font-size: 15px;">Right-click → "Show more options" → "🧹 Clean Metadata"</p>
+          </div>
+        </div>
+
+        <div class="install-section">
+          <h3><i class="fas fa-file-image"></i> Supported Formats</h3>
+          <div style="margin-bottom: 15px;">
+            <strong style="color: var(--text-secondary); display: block; margin-bottom: 5px;">Images:</strong>
+            <div class="format-tags">
+              <span class="format-tag">jpg</span>
+              <span class="format-tag">jpeg</span>
+              <span class="format-tag">png</span>
+            </div>
+          </div>
+          <div>
+            <strong style="color: var(--text-secondary); display: block; margin-bottom: 5px;">Videos:</strong>
+            <div class="format-tags">
+              <span class="format-tag">mp4</span>
+              <span class="format-tag">avi</span>
+              <span class="format-tag">mov</span>
+              <span class="format-tag">mkv</span>
+              <span class="format-tag">wmv</span>
+              <span class="format-tag">flv</span>
+              <span class="format-tag">webm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="install-section" style="margin-bottom: 0;">
+          <h3><i class="fas fa-trash-alt"></i> Uninstall করতে</h3>
+          <ul class="install-steps install-list">
+            <li><strong>"Uninstall.bat"</strong> ফাইলে Right-click করুন</li>
+            <li><strong>"Run as administrator"</strong> সিলেক্ট করুন</li>
+            <li><strong>Y</strong> টাইপ করে Enter দিন</li>
+          </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <p style="color: var(--text-secondary); font-size: 14px;">Powered by ExifTool by Phil Harvey<br><a href="https://exiftool.org" target="_blank" style="color: #99f2c8; text-decoration: none;">https://exiftool.org</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year">2026</span> <span class="gradient-text">Md. Fuyad Hasan</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
