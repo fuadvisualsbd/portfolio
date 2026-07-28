@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AutoPro - Premium Adobe Scripts Plugin | FV Labs</title>
+  <meta name="description" content="Download AutoPro, the Premium Adobe Scripts Plugin for Photoshop and Illustrator. Automate your workflow." />
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="icon" href="photo/passport size photo.jpg" type="image/jpeg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="CSS/style.css" />
+  <style>
+    .plugin-hero {
+      padding: 120px 0 60px;
+      text-align: center;
+      background: radial-gradient(circle at top, rgba(102, 126, 234, 0.15) 0%, transparent 50%);
+    }
+    .plugin-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .plugin-description {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+    .plugin-content {
+      max-width: 800px;
+      margin: 0 auto 80px;
+      padding: 40px;
+    }
+    .install-section {
+      margin-bottom: 40px;
+    }
+    .install-section h3 {
+      font-size: 24px;
+      color: var(--accent-1);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .install-steps {
+      list-style: none;
+      padding: 0;
+    }
+    .install-steps li {
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+    .install-steps li::before {
+      content: counter(step-counter);
+      counter-increment: step-counter;
+      position: absolute;
+      left: 0;
+      top: -2px;
+      width: 28px;
+      height: 28px;
+      background: rgba(102, 126, 234, 0.1);
+      border: 1px solid rgba(102, 126, 234, 0.3);
+      color: #667eea;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .install-list {
+      counter-reset: step-counter;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px rgba(102, 126, 234, 0.4);
+      color: #fff;
+    }
+    .note-box {
+      background: rgba(255, 193, 7, 0.1);
+      border-left: 4px solid #ffc107;
+      padding: 20px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 30px;
+    }
+    .note-box p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+    .note-box strong {
+      color: #ffc107;
+    }
+    .code-link {
+      color: var(--accent-1);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .code-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" style="background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(10px);">
+    <a href="index.html" class="nav-brand">
+      <img src="photo/passport size photo.jpg" alt="Md. Fuyad Hasan" class="nav-avatar" />
+      <span class="nav-name">FV Labs</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#fv-labs" class="active">Products</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PLUGIN HEADER ===== -->
+  <section class="plugin-hero">
+    <div class="container">
+      <div style="font-size: 64px; margin-bottom: 20px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        <i class="fas fa-magic"></i>
+      </div>
+      <h1 class="plugin-title">AutoPro</h1>
+      <p class="plugin-description">Premium Adobe Scripts Plugin for Adobe Photoshop and Illustrator. Automate your creative workflow and login to access free powerful scripts.</p>
+      
+      <a href="https://drive.google.com/file/d/1zth5m3fTqhU1uTK2I9vFY4OSSRE0gwT8/view?usp=sharing" target="_blank" class="download-btn">
+        <i class="fas fa-download"></i> Download Plugin
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== INSTRUCTIONS ===== -->
+  <section>
+    <div class="container">
+      <div class="glass-card plugin-content">
+        
+        <div class="install-section">
+          <h3><i class="fab fa-windows"></i> Windows Users (Easiest Way)</h3>
+          <ul class="install-steps install-list">
+            <li>Simply double-click the <strong>"Install_AutoPro_Windows.bat"</strong> file.</li>
+            <li>Windows will ask for Administrator permission (User Account Control). Click <strong>"Yes"</strong>.<br>
+              <span style="font-size: 14px; color: var(--text-secondary);">(This is required to copy the files to your Adobe C: drive folder).</span></li>
+            <li>The command prompt will automatically install the plugin for you.</li>
+            <li>Open Adobe Illustrator/Photoshop, go to <strong>Window > Extensions > Pro Scripts Login</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="install-section">
+          <h3><i class="fab fa-apple"></i> Mac Users (Or Alternative Windows Way)</h3>
+          <ul class="install-steps install-list">
+            <li>Download Anastasiy's Extension Manager:<br>
+              Mac: <a href="https://install.anastasiy.com/ExtensionManager_latest_mac.dmg" class="code-link" target="_blank">https://install.anastasiy.com/ExtensionManager_latest_mac.dmg</a><br>
+              Win: <a href="https://install.anastasiy.com/ExtensionManager_latest_win.zip" class="code-link" target="_blank">https://install.anastasiy.com/ExtensionManager_latest_win.zip</a>
+            </li>
+            <li>Open Anastasiy's Extension Manager and click <strong>"Install"</strong>.</li>
+            <li>Select the <strong>"AutoPro_v1.0.0.zxp"</strong> file.</li>
+            <li>Open Adobe Illustrator/Photoshop, go to <strong>Window > Extensions > Pro Scripts Login</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="install-section" style="margin-bottom: 0;">
+          <h3><i class="fas fa-trash-alt"></i> How to Uninstall (Windows Only)</h3>
+          <ul class="install-steps install-list">
+            <li>Double-click the <strong>"Uninstall_AutoPro_Windows.bat"</strong> file.</li>
+            <li>Windows will ask for Administrator permission. Click <strong>"Yes"</strong>.</li>
+            <li>It will completely remove the plugin from your PC.</li>
+          </ul>
+        </div>
+
+        <div class="note-box">
+          <p><strong><i class="fas fa-exclamation-triangle"></i> NOTE:</strong> Do <strong>NOT</strong> separate the files in the downloaded folder. The "Install_AutoPro_Windows.bat" file needs the "extension" folder to work properly!</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year">2026</span> <span class="gradient-text">Md. Fuyad Hasan</span>. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
