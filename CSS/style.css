@@ -520,6 +520,46 @@ section { padding: 100px 0; position: relative; }
   font-weight: 700;
 }
 
+/* ===== FLOATING SOCIAL BAR ===== */
+.floating-socials {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px;
+  background: rgba(10, 10, 15, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+.floating-social-link {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 16px;
+  transition: var(--transition);
+}
+.floating-social-link:hover {
+  color: #fff;
+  transform: scale(1.15) translateX(3px);
+}
+.floating-social-link.fb:hover { background: #1877F2; border-color: #1877F2; box-shadow: 0 4px 16px rgba(24, 119, 242, 0.4); }
+.floating-social-link.wa:hover { background: #25D366; border-color: #25D366; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); }
+.floating-social-link.be:hover { background: #0057ff; border-color: #0057ff; box-shadow: 0 4px 16px rgba(0, 87, 255, 0.4); }
+.floating-social-link.gh:hover { background: #24292e; border-color: #444; box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2); }
+
 /* ===== BACK TO TOP ===== */
 .back-to-top {
   position: fixed; bottom: 30px; right: 30px;
@@ -564,9 +604,32 @@ section { padding: 100px 0; position: relative; }
   .about-content, .skills-grid, .timeline-grid, .projects-container, .contact-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 28px; }
   .cursor-dot, .cursor-ring { display: none; }
+  .floating-socials {
+    left: auto;
+    right: 18px;
+    top: auto;
+    bottom: 90px;
+    transform: none;
+    gap: 8px;
+    padding: 6px;
+  }
+  .floating-social-link {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
 }
 @media (max-width: 480px) {
   .hero-name { font-size: 30px; }
   .hero-stats { flex-direction: column; gap: 20px; align-items: center; }
   .glass-card { padding: 20px; }
+  .floating-socials {
+    right: 12px;
+    bottom: 84px;
+  }
+  .floating-social-link {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
 }
