@@ -412,40 +412,43 @@ section { padding: 100px 0; position: relative; }
 /* ===== TOOLS ===== */
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
 }
 .tool-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   background: var(--bg-card);
   border: 1px solid var(--border-glass);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   transition: var(--transition);
   position: relative;
 }
 .tool-card::after {
   content: ''; position: absolute; inset: 0;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   padding: 2px;
   background: var(--gradient-main);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   opacity: 0; transition: opacity 0.4s;
 }
-.tool-card:hover { transform: translateY(-6px); }
+.tool-card:hover { transform: translateY(-4px); }
 .tool-card:hover::after { opacity: 1; }
 
 .tool-card .tool-image {
-  aspect-ratio: 1; overflow: hidden;
+  height: 110px;
+  width: 100%;
+  overflow: hidden;
   background: var(--bg-secondary);
   display: flex; align-items: center; justify-content: center;
 }
 .tool-card .tool-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
 .tool-card:hover .tool-image img { transform: scale(1.05); }
-.tool-card .tool-info { padding: 16px; position: relative; z-index: 1; }
-.tool-card .tool-info h4 { font-size: 15px; font-weight: 700; }
-.tool-card .tool-info p { color: var(--text-secondary); font-size: 13px; margin-top: 6px; }
+.tool-card .tool-info { padding: 14px; position: relative; z-index: 1; display: flex; flex-direction: column; flex-grow: 1; }
+.tool-card .tool-info h4 { font-size: 14px; font-weight: 700; line-height: 1.3; }
+.tool-card .tool-info p { color: var(--text-secondary); font-size: 12px; margin-top: 5px; line-height: 1.4; }
 
 /* ===== CONTACT ===== */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
