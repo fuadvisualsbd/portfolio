@@ -19,11 +19,10 @@ window.addEventListener('load', () => {
     reset() {
       this.x = Math.random() * canvas.width;
       this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 2 + 0.5;
+      this.size = Math.random() * 2 + 0.6;
       this.speedX = (Math.random() - 0.5) * 0.4;
       this.speedY = (Math.random() - 0.5) * 0.4;
-      this.opacity = Math.random() * 0.5 + 0.1;
-      this.hue = Math.random() > 0.5 ? 255 : 200;
+      this.opacity = Math.random() * 0.4 + 0.15;
     }
     update() {
       const dx = mouse.x - this.x, dy = mouse.y - this.y;
@@ -32,26 +31,36 @@ window.addEventListener('load', () => {
       this.x += this.speedX; this.y += this.speedY;
       if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
     }
-    draw() {
+    draw(isDark) {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${this.hue}, ${this.hue}, 255, ${this.opacity})`;
+      if (isDark) {
+        ctx.fillStyle = `rgba(180, 200, 255, ${this.opacity})`;
+      } else {
+        // 90s vintage slate/navy subtle particles on warm beige
+        ctx.fillStyle = `rgba(75, 68, 56, ${this.opacity * 0.85})`;
+      }
       ctx.fill();
     }
   }
 
-  for (let i = 0; i < 80; i++) particles.push(new Particle());
+  for (let i = 0; i < 75; i++) particles.push(new Particle());
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    particles.forEach(p => { p.update(); p.draw(isDark); });
     // Draw connections
     for (let a = 0; a < particles.length; a++) {
       for (let b = a + 1; b < particles.length; b++) {
         const dx = particles[a].x - particles[b].x;
         const dy = particles[a].y - particles[b].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          ctx.strokeStyle = `rgba(124, 92, 252, ${0.08 * (1 - dist / 120)})`;
+        if (dist < 115) {
+          if (isDark) {
+            ctx.strokeStyle = `rgba(124, 92, 252, ${0.08 * (1 - dist / 115)})`;
+          } else {
+            ctx.strokeStyle = `rgba(0, 0, 128, ${0.08 * (1 - dist / 115)})`;
+          }
           ctx.lineWidth = 0.5;
           ctx.beginPath();
           ctx.moveTo(particles[a].x, particles[a].y);
@@ -229,3 +238,40 @@ window.addEventListener('load', () => {
 /* ===== YEAR ===== */
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ===== THEME CONTROLLER (OLD BEIGE / DARK) ===== */
+(function initTheme() {
+  const toggleBtn = document.getElementById('themeToggleBtn');
+  const savedTheme = localStorage.getItem('fv_portfolio_theme') || 'old-beige';
+  applyTheme(savedTheme);
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'old-beige';
+      const next = current === 'old-beige' ? 'dark' : 'old-beige';
+      applyTheme(next);
+      localStorage.setItem('fv_portfolio_theme', next);
+    });
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', theme === 'dark' ? '#0a0a0f' : '#d8d3c5');
+    }
+    if (toggleBtn) {
+      const icon = toggleBtn.querySelector('.theme-icon');
+      const text = toggleBtn.querySelector('.theme-text');
+      if (theme === 'dark') {
+        if (icon) icon.textContent = '🌙';
+        if (text) text.textContent = 'Dark';
+        toggleBtn.setAttribute('title', 'Switch to 90s Old Beige theme');
+      } else {
+        if (icon) icon.textContent = '💾';
+        if (text) text.textContent = 'Old Beige';
+        toggleBtn.setAttribute('title', 'Switch to Dark theme');
+      }
+    }
+  }
+})();

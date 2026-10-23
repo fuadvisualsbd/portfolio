@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="old-beige">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FV Labs | Web Design, Workflow Automation & Advanced Graphic Design</title>
   <meta name="description" content="FV Labs provides professional web design, workflow automation, Adobe scripting, Photoshop automation, Illustrator automation, AI workflow development, and advanced graphic design services." />
   <meta name="author" content="Md. Fuyad Hasan" />
-  <meta name="theme-color" content="#0a0a0f" />
-  <link rel="icon" href="photo/passport size photo.jpg" type="image/jpeg" />
+  <meta name="theme-color" content="#d8d3c5" />
+  <script>
+    (function() {
+      const saved = localStorage.getItem('fv_portfolio_theme') || 'old-beige';
+      document.documentElement.setAttribute('data-theme', saved);
+    })();
+  </script>
+  <link rel="icon" href="photo/logo.svg" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="CSS/style.css" />
@@ -48,7 +54,7 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
     <a href="#home" class="nav-brand">
-      <img src="photo/passport size photo.jpg" alt="Md. Fuyad Hasan - FV Labs Founder and Automation Expert" class="nav-avatar" />
+      <img src="photo/logo.svg" alt="FV Labs Logo" class="nav-avatar" />
       <span class="nav-name">FV Labs</span>
     </a>
     <ul class="nav-links">
@@ -59,9 +65,15 @@
       <li><a href="#software">Software</a></li>
       <li><a href="#blog">Blog</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="https://private-project-1-alpha.vercel.app/" target="_blank" rel="noopener noreferrer" class="nav-private-pill" title="Private Program Hub"><i class="fas fa-lock"></i> Private Studio</a></li>
     </ul>
-    <div class="hamburger">
-      <span></span><span></span><span></span>
+    <div class="nav-actions">
+      <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle theme (Old Beige / Dark)">
+        <span class="theme-icon">💾</span> <span class="theme-text">Old Beige</span>
+      </button>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </nav>
 
@@ -74,6 +86,7 @@
     <a href="#software">Software</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>
+    <a href="https://private-project-1-alpha.vercel.app/" target="_blank" rel="noopener noreferrer" class="mobile-private-pill"><i class="fas fa-lock"></i> Private Studio</a>
   </div>
 
   <!-- ===== HERO ===== -->
@@ -94,9 +107,17 @@
 
       <div class="hero-grid">
         <div class="hero-content" style="display: flex; flex-direction: column; justify-content: center;">
-          <div class="hero-side-block reveal reveal-delay-3" style="background: rgba(255,255,255,0.05); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-            <h3 style="color: var(--accent-1); font-size: 22px; margin-bottom: 10px;">Fuad Visuals</h3>
-            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 15px;">Creative Design Division specializing in Branding, Motion Graphics & Adobe Stock.</p>
+          <div class="hero-side-card reveal reveal-delay-3">
+            <h3 style="margin-bottom: 10px;">
+              <a href="#fuad-visuals" class="hero-card-title-link" title="Jump to Fuad Visuals">
+                <span>Fuad Visuals</span>
+                <i class="fas fa-arrow-down" style="font-size: 14px;"></i>
+              </a>
+            </h3>
+            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 15px; margin-bottom: 12px;">Creative Design Division specializing in Branding, Motion Graphics & Adobe Stock.</p>
+            <a href="#fuad-visuals" class="hero-sublink" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--accent-1);">
+              <span>Explore Designs &darr;</span>
+            </a>
           </div>
         </div>
         
@@ -107,12 +128,15 @@
               <img src="photo/my pic.png" alt="FV Labs Web Design and Workflow Automation Portfolio" />
             </div>
           </div>
-          <div class="hero-btns reveal reveal-delay-4" style="display: flex; justify-content: center; gap: 16px; width: 100%;">
+          <div class="hero-btns reveal reveal-delay-4" style="display: flex; justify-content: center; gap: 14px; width: 100%; flex-wrap: wrap;">
             <a href="#contact" class="btn-primary">
               <i class="fas fa-paper-plane"></i> Hire Me
             </a>
-            <a href="#projects" class="btn-outline">
+            <a href="#fv-labs" class="btn-outline">
               <i class="fas fa-eye"></i> View Work
+            </a>
+            <a href="https://private-project-1-alpha.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-private" title="Fuyad Private Studio & Program">
+              <i class="fas fa-lock"></i> Private Studio
             </a>
           </div>
           
@@ -133,9 +157,22 @@
         </div>
         
         <div class="hero-side-content reveal reveal-delay-3" style="display: flex; flex-direction: column; justify-content: center;">
-            <div style="background: rgba(255,255,255,0.05); padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); transition: transform 0.3s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-              <h3 style="color: var(--accent-2); font-size: 22px; margin-bottom: 10px;">FV Labs</h3>
-              <p style="color: var(--text-secondary); line-height: 1.6; font-size: 15px;">Building scalable SaaS applications, Workflow Automations & AI Tools.</p>
+            <div class="hero-side-card">
+              <h3 style="margin-bottom: 10px;">
+                <a href="#fv-labs" class="hero-card-title-link" title="Jump to FV Labs">
+                  <span>FV Labs</span>
+                  <i class="fas fa-arrow-down" style="font-size: 14px;"></i>
+                </a>
+              </h3>
+              <p style="color: var(--text-secondary); line-height: 1.6; font-size: 15px; margin-bottom: 14px;">Building scalable SaaS applications, Workflow Automations & AI Tools.</p>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <a href="#fv-labs" class="hero-sublink" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--accent-1); margin-bottom: 4px;">
+                  <span>Explore Products & Tools &darr;</span>
+                </a>
+                <a href="https://private-project-1-alpha.vercel.app/" target="_blank" rel="noopener noreferrer" class="hero-private-link">
+                  <i class="fas fa-terminal"></i> <span>Launch Private Hub &rarr;</span>
+                </a>
+              </div>
             </div>
         </div>
       </div>
@@ -174,7 +211,7 @@
             </div>
             <div class="info-item">
               <div class="label">Availability</div>
-              <div class="value" style="color: #00d4ff;">Open to Work</div>
+              <div class="value" style="color: var(--accent-green, #15803d); font-weight: 700;">● Open to Work</div>
             </div>
           </div>
           <a href="#contact" class="btn-primary" style="margin-top: 24px; width: 100%; justify-content: center;">
@@ -328,7 +365,22 @@
         <p class="section-subtitle">AI Tools, Chrome Extensions & SaaS applications developed by us.</p>
       </div>
       <div class="tools-grid">
-        <a href="https://motionsvg.vercel.app/" target="_blank" class="tool-card reveal">
+        <a href="https://private-project-1-alpha.vercel.app/" target="_blank" rel="noopener noreferrer" class="tool-card tool-card-featured reveal">
+          <div class="tool-image">
+            <div style="font-size:32px;display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#000080,#004080);color:#f5eedc;position:relative;">
+              <i class="fas fa-laptop-code"></i>
+              <span class="tool-badge-private"><i class="fas fa-lock"></i> Private Program</span>
+            </div>
+          </div>
+          <div class="tool-info">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;">
+              <h4>Fuyad Private Studio</h4>
+              <i class="fas fa-arrow-up-right-from-square" style="font-size:11px;color:var(--accent-1);"></i>
+            </div>
+            <p>Private workspace hub featuring 3D WebGL generators, vector icon builders & advanced creative automation suites.</p>
+          </div>
+        </a>
+        <a href="https://motionsvg.vercel.app/" target="_blank" class="tool-card reveal reveal-delay-1">
           <div class="tool-image">
             <img src="photo/motionsvg.png" alt="MotionSVG AI Workflow Development and Automation Tool" onerror="this.parentElement.innerHTML='<div style=&quot;font-size:32px;display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#7c5cfc,#00d4ff);color:#fff;&quot;><i class=&quot;fas fa-video&quot;></i></div>'" />
           </div>
