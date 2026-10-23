@@ -181,34 +181,6 @@ img { max-width: 100%; display: block; }
   border-radius: 2px;
 }
 
-/* Nav Actions & Theme Switcher */
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.theme-toggle-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  border-radius: 50px;
-  font-size: 13px;
-  font-weight: 700;
-  background: var(--bg-card);
-  border: 1px solid var(--border-glass);
-  color: var(--text-primary);
-  cursor: pointer;
-  box-shadow: var(--card-shadow);
-  transition: var(--transition);
-  font-family: inherit;
-}
-.theme-toggle-btn:hover {
-  border-color: var(--accent-1);
-  transform: translateY(-1px);
-}
-
 /* Nav Private Pill */
 .nav-private-pill {
   display: inline-flex;

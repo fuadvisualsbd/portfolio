@@ -239,39 +239,5 @@ window.addEventListener('load', () => {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-/* ===== THEME CONTROLLER (OLD BEIGE / DARK) ===== */
-(function initTheme() {
-  const toggleBtn = document.getElementById('themeToggleBtn');
-  const savedTheme = localStorage.getItem('fv_portfolio_theme') || 'old-beige';
-  applyTheme(savedTheme);
-
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') || 'old-beige';
-      const next = current === 'old-beige' ? 'dark' : 'old-beige';
-      applyTheme(next);
-      localStorage.setItem('fv_portfolio_theme', next);
-    });
-  }
-
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'dark' ? '#0a0a0f' : '#d8d3c5');
-    }
-    if (toggleBtn) {
-      const icon = toggleBtn.querySelector('.theme-icon');
-      const text = toggleBtn.querySelector('.theme-text');
-      if (theme === 'dark') {
-        if (icon) icon.textContent = '🌙';
-        if (text) text.textContent = 'Dark';
-        toggleBtn.setAttribute('title', 'Switch to 90s Old Beige theme');
-      } else {
-        if (icon) icon.textContent = '💾';
-        if (text) text.textContent = 'Old Beige';
-        toggleBtn.setAttribute('title', 'Switch to Dark theme');
-      }
-    }
-  }
-})();
+/* ===== THEME: 90s NOSTALGIC OLD BEIGE ===== */
+document.documentElement.setAttribute('data-theme', 'old-beige');
