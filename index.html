@@ -10,7 +10,7 @@
   <link rel="icon" href="photo/logo.svg" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="CSS/style.css?v=3.0" />
+  <link rel="stylesheet" href="CSS/style.css?v=4.0" />
   <style>
     .profile-ring {
       width: 300px;
@@ -20,59 +20,84 @@
       position: relative;
       background: var(--gradient-main, linear-gradient(135deg, #000080, #0284c7));
       animation: ring-rotate 6s linear infinite;
-      overflow: hidden !important;
+      perspective: 1000px;
+      -webkit-perspective: 1000px;
       cursor: pointer;
     }
-    .profile-img-swap {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: calc(100% - 8px);
-      height: calc(100% - 8px);
+    .profile-coin {
+      width: 100%;
+      height: 100%;
+      position: relative;
       border-radius: 50%;
-      border: 4px solid var(--bg-primary, #d8d3c5);
-      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .profile-coin.is-flipped {
+      transform: rotateY(180deg);
+    }
+    .coin-face {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+      border: 4px solid var(--bg-primary, #d8d3c5);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    #profileImgPhoto {
-      object-fit: cover;
+    .face-front {
+      transform: rotateY(0deg);
+      background: #115e3c;
       opacity: 1;
-      transform: scale(1) rotateY(0deg);
-      z-index: 2;
+      transition: opacity 0.3s ease 0.15s;
     }
-    #profileImgPhoto.is-hidden {
-      opacity: 0;
-      transform: scale(0.9) rotateY(180deg);
-      z-index: 1;
+    .profile-coin.is-flipped .face-front {
+      opacity: 0 !important;
       pointer-events: none;
     }
-    #profileImgLogo {
-      object-fit: contain;
+    .face-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+    .face-back {
+      transform: rotateY(180deg);
       background: #ffffff;
       padding: 24px;
       opacity: 0;
-      transform: scale(0.9) rotateY(-180deg);
-      z-index: 1;
+      transition: opacity 0.3s ease 0.15s;
       pointer-events: none;
     }
-    #profileImgLogo.is-visible {
-      opacity: 1;
-      transform: scale(1) rotateY(0deg);
-      z-index: 2;
+    .profile-coin.is-flipped .face-back {
+      opacity: 1 !important;
       pointer-events: auto;
     }
-    html[data-theme="dark"] #profileImgLogo {
+    .face-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    html[data-theme="dark"] .face-back {
       background: #111118;
+    }
+    html[data-theme="dark"] .face-back img {
       filter: invert(1);
     }
     @media (max-width: 900px) {
       .profile-ring { width: 220px; height: 220px; }
-      #profileImgLogo { padding: 18px; }
+      .face-back { padding: 18px; }
     }
     @media (max-width: 480px) {
       .profile-ring { width: 195px; height: 195px; }
-      #profileImgLogo { padding: 16px; }
+      .face-back { padding: 16px; }
     }
   </style>
   <script type="application/ld+json">
@@ -178,8 +203,14 @@
           <div style="position: relative; margin-bottom: 30px;">
             <div class="profile-glow"></div>
             <div class="profile-ring" id="profileRing" title="Click to flip">
-              <img src="photo/my pic.png" alt="Md. Fuyad Hasan" class="profile-img-swap" id="profileImgPhoto" />
-              <img src="photo/logo.svg" alt="FV Labs Logo" class="profile-img-swap" id="profileImgLogo" />
+              <div class="profile-coin" id="profileCoin">
+                <div class="coin-face face-front">
+                  <img src="photo/my pic.png" alt="Md. Fuyad Hasan" />
+                </div>
+                <div class="coin-face face-back">
+                  <img src="photo/logo.svg" alt="FV Labs Logo" />
+                </div>
+              </div>
             </div>
           </div>
           <div class="hero-btns reveal reveal-delay-4" style="display: flex; justify-content: center; gap: 14px; width: 100%; flex-wrap: wrap;">
@@ -636,7 +667,7 @@
   <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
 
   <!-- JavaScript -->
-  <script src="js/main.js?v=3.0"></script>
+  <script src="js/main.js?v=4.0"></script>
   <script src="js/telegram-tracker.js"></script>
 
 </body>

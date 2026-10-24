@@ -235,30 +235,24 @@ window.addEventListener('load', () => {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 
-/* ===== HERO PROFILE PHOTO & LOGO ANIMATION ===== */
-(function initProfileSwap() {
-  const photo = document.getElementById('profileImgPhoto');
-  const logo = document.getElementById('profileImgLogo');
+/* ===== HERO PROFILE PHOTO & LOGO AUTO-FLIP ===== */
+(function initProfileCoinFlip() {
+  const coin = document.getElementById('profileCoin');
   const ring = document.getElementById('profileRing');
-  if (!photo || !logo || !ring) return;
+  if (!coin || !ring) return;
 
-  let showLogo = false;
+  let isFlipped = false;
   let timer = null;
+  const FLIP_INTERVAL = 3500; // flips every 3.5 seconds
 
-  function toggle() {
-    showLogo = !showLogo;
-    if (showLogo) {
-      photo.classList.add('is-hidden');
-      logo.classList.add('is-visible');
-    } else {
-      photo.classList.remove('is-hidden');
-      logo.classList.remove('is-visible');
-    }
+  function flip() {
+    isFlipped = !isFlipped;
+    coin.classList.toggle('is-flipped', isFlipped);
   }
 
   function start() {
     stop();
-    timer = setInterval(toggle, 3500);
+    timer = setInterval(flip, FLIP_INTERVAL);
   }
 
   function stop() {
@@ -269,7 +263,7 @@ window.addEventListener('load', () => {
   }
 
   ring.addEventListener('click', () => {
-    toggle();
+    flip();
     start();
   });
 

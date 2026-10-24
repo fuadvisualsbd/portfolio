@@ -488,53 +488,83 @@ html[data-theme="dark"] .profile-glow {
   padding: 4px; position: relative;
   background: var(--gradient-main);
   animation: ring-rotate 6s linear infinite;
-  overflow: hidden !important;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
   cursor: pointer;
 }
 @keyframes ring-rotate { to { filter: hue-rotate(360deg); } }
 
-/* Pure Circle Swap (Photo <-> Logo) */
-.profile-img-swap {
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: calc(100% - 8px);
-  height: calc(100% - 8px);
+/* 3D Coin Flip Card (Photo <-> Top-Left Logo) */
+.profile-coin {
+  width: 100%;
+  height: 100%;
+  position: relative;
   border-radius: 50%;
-  border: 4px solid var(--bg-primary);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.profile-coin.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.coin-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  border: 4px solid var(--bg-primary);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#profileImgPhoto {
-  object-fit: cover;
+
+/* Front Face: Photo */
+.face-front {
+  transform: rotateY(0deg);
+  background: #115e3c;
   opacity: 1;
-  transform: scale(1) rotateY(0deg);
-  z-index: 2;
+  transition: opacity 0.3s ease 0.15s;
 }
-#profileImgPhoto.is-hidden {
-  opacity: 0;
-  transform: scale(0.9) rotateY(180deg);
-  z-index: 1;
+.profile-coin.is-flipped .face-front {
+  opacity: 0 !important;
   pointer-events: none;
 }
-#profileImgLogo {
-  object-fit: contain;
+.face-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+/* Back Face: Logo */
+.face-back {
+  transform: rotateY(180deg);
   background: #ffffff;
   padding: 24px;
   opacity: 0;
-  transform: scale(0.9) rotateY(-180deg);
-  z-index: 1;
+  transition: opacity 0.3s ease 0.15s;
   pointer-events: none;
 }
-#profileImgLogo.is-visible {
-  opacity: 1;
-  transform: scale(1) rotateY(0deg);
-  z-index: 2;
+.profile-coin.is-flipped .face-back {
+  opacity: 1 !important;
   pointer-events: auto;
 }
-html[data-theme="dark"] #profileImgLogo {
+.face-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+html[data-theme="dark"] .face-back {
   background: #111118;
+}
+html[data-theme="dark"] .face-back img {
   filter: invert(1);
 }
 
@@ -846,7 +876,7 @@ html[data-theme="dark"] #profileImgLogo {
   .hero-name { font-size: 38px; }
   .profile-ring { width: 220px; height: 220px; }
   .profile-glow { width: 240px; height: 240px; }
-  #profileImgLogo { padding: 18px; }
+  .face-back { padding: 18px; }
   .about-content, .skills-grid, .timeline-grid, .projects-container, .contact-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 28px; }
   .cursor-dot, .cursor-ring { display: none; }
@@ -868,7 +898,7 @@ html[data-theme="dark"] #profileImgLogo {
 @media (max-width: 480px) {
   .profile-ring { width: 195px; height: 195px; }
   .profile-glow { width: 210px; height: 210px; }
-  #profileImgLogo { padding: 16px; }
+  .face-back { padding: 16px; }
   .hero-name { font-size: 30px; }
   .hero-stats { flex-direction: column; gap: 20px; align-items: center; }
   .glass-card { padding: 20px; }
