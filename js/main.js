@@ -235,7 +235,7 @@ window.addEventListener('load', () => {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 
-/* ===== HERO PROFILE PHOTO & LOGO AUTO-FLIP ===== */
+/* ===== HERO PROFILE PHOTO & LOGO AUTO-FLIP (TIME & SCROLL RESPONSIVE) ===== */
 (function initProfileCoinFlip() {
   const coin = document.getElementById('profileCoin');
   const ring = document.getElementById('profileRing');
@@ -243,7 +243,7 @@ window.addEventListener('load', () => {
 
   let isFlipped = false;
   let timer = null;
-  const FLIP_INTERVAL = 3500; // flips every 3.5 seconds
+  const FLIP_INTERVAL = 3500; // auto flips every 3.5 seconds
 
   function flip() {
     isFlipped = !isFlipped;
@@ -262,16 +262,44 @@ window.addEventListener('load', () => {
     }
   }
 
+  // Click Trigger
   ring.addEventListener('click', () => {
     flip();
     start();
   });
 
+  // Pause on hover
   const parent = ring.closest('.hero-profile') || ring.parentElement;
   if (parent) {
     parent.addEventListener('mouseenter', stop);
     parent.addEventListener('mouseleave', start);
   }
+
+  // Scroll Responsive Trigger: flips if user scrolls before fixed timer
+  let lastScrollY = window.scrollY;
+  let isScrollThrottled = false;
+  const SCROLL_THRESHOLD = 30; // 30px scroll threshold
+
+  window.addEventListener('scroll', () => {
+    // Only react while Hero section is visible
+    if (window.scrollY > 750) return;
+
+    const currentScrollY = window.scrollY;
+    const diff = Math.abs(currentScrollY - lastScrollY);
+
+    if (diff >= SCROLL_THRESHOLD && !isScrollThrottled) {
+      lastScrollY = currentScrollY;
+      isScrollThrottled = true;
+
+      flip();
+      start(); // resets 3.5s countdown after scroll flip
+
+      setTimeout(() => {
+        isScrollThrottled = false;
+        lastScrollY = window.scrollY;
+      }, 850);
+    }
+  }, { passive: true });
 
   start();
 })();
