@@ -89,7 +89,7 @@ window.addEventListener('load', () => {
     requestAnimationFrame(updateCursor);
   }
   updateCursor();
-  document.querySelectorAll('a, button, .tool-card, .skill-tag, .profile-flipper, .profile-corner-badge').forEach(el => {
+  document.querySelectorAll('a, button, .tool-card, .skill-tag, .profile-flip-card').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hover'));
     el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
   });
@@ -235,112 +235,42 @@ window.addEventListener('load', () => {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 
-/* ===== EYE-CATCHING AVATAR & LOGO 3D FLIPPER ===== */
-(function initAvatarFlipper() {
-  const container = document.getElementById('profileAvatarContainer');
-  const flipper = document.getElementById('profileFlipper');
-  const ring = document.getElementById('profileRing');
-  const flipBtn = document.getElementById('avatarFlipBtn');
-  const badgeText = document.getElementById('avatarBadgeText');
-  const dots = document.querySelectorAll('#avatarIndicators .indicator-dot');
-  if (!container || !flipper) return;
-
+/* ===== HERO PROFILE FLIP (PHOTO & LOGO) ===== */
+(function initProfileFlipper() {
+  const card = document.getElementById('profileFlipCard');
+  if (!card) return;
   let isFlipped = false;
-  let autoTimer = null;
-  const FLIP_INTERVAL = 4200; // 4.2 seconds auto transition
+  let timer = null;
 
-  function setFlip(targetState) {
-    if (isFlipped === targetState) return;
-    isFlipped = targetState;
-    applyFlip();
-  }
-
-  function toggleFlip() {
+  function toggle() {
     isFlipped = !isFlipped;
-    applyFlip();
+    card.classList.toggle('is-flipped', isFlipped);
   }
 
-  function applyFlip() {
-    flipper.classList.add('flipping');
-    flipper.classList.toggle('flipped', isFlipped);
-
-    if (badgeText) {
-      badgeText.textContent = isFlipped ? 'FV Labs' : 'Fuad Visuals';
-    }
-
-    dots.forEach(dot => {
-      const side = dot.dataset.side;
-      dot.classList.toggle('active', (side === 'logo' && isFlipped) || (side === 'photo' && !isFlipped));
-    });
-
-    setTimeout(() => {
-      flipper.classList.remove('flipping');
-    }, 850);
+  function start() {
+    stop();
+    timer = setInterval(toggle, 3500);
   }
 
-  function startTimer() {
-    stopTimer();
-    autoTimer = setInterval(() => {
-      toggleFlip();
-    }, FLIP_INTERVAL);
-  }
-
-  function stopTimer() {
-    if (autoTimer) {
-      clearInterval(autoTimer);
-      autoTimer = null;
+  function stop() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
     }
   }
 
-  // Click & Keyboard Triggers
-  flipper.addEventListener('click', () => {
-    toggleFlip();
-    startTimer();
+  card.addEventListener('click', () => {
+    toggle();
+    start();
   });
 
-  flipper.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      toggleFlip();
-      startTimer();
-    }
-  });
-
-  if (flipBtn) {
-    flipBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleFlip();
-      startTimer();
-    });
+  const parent = card.closest('.hero-profile') || card.parentElement;
+  if (parent) {
+    parent.addEventListener('mouseenter', stop);
+    parent.addEventListener('mouseleave', start);
   }
 
-  dots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
-      e.stopPropagation();
-      setFlip(dot.dataset.side === 'logo');
-      startTimer();
-    });
-  });
-
-  // Pause on hover
-  container.addEventListener('mouseenter', stopTimer);
-  container.addEventListener('mouseleave', () => {
-    startTimer();
-    if (ring) ring.style.transform = '';
-  });
-
-  // 3D Parallax Tilt with Cursor (Desktop)
-  if (ring && window.innerWidth >= 900) {
-    container.addEventListener('mousemove', (e) => {
-      const rect = container.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      ring.style.transform = `perspective(1000px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg) translateY(-2px)`;
-    });
-  }
-
-  // Start initial rotation cycle
-  startTimer();
+  start();
 })();
 
 /* ===== YEAR ===== */
