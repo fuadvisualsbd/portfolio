@@ -89,7 +89,7 @@ window.addEventListener('load', () => {
     requestAnimationFrame(updateCursor);
   }
   updateCursor();
-  document.querySelectorAll('a, button, .tool-card, .skill-tag, .profile-flip-card').forEach(el => {
+  document.querySelectorAll('a, button, .tool-card, .skill-tag, .profile-ring').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hover'));
     el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
   });
@@ -235,16 +235,25 @@ window.addEventListener('load', () => {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 
-/* ===== HERO PROFILE FLIP (PHOTO & LOGO) ===== */
-(function initProfileFlipper() {
-  const card = document.getElementById('profileFlipCard');
-  if (!card) return;
-  let isFlipped = false;
+/* ===== HERO PROFILE PHOTO & LOGO ANIMATION ===== */
+(function initProfileSwap() {
+  const photo = document.getElementById('profileImgPhoto');
+  const logo = document.getElementById('profileImgLogo');
+  const ring = document.getElementById('profileRing');
+  if (!photo || !logo || !ring) return;
+
+  let showLogo = false;
   let timer = null;
 
   function toggle() {
-    isFlipped = !isFlipped;
-    card.classList.toggle('is-flipped', isFlipped);
+    showLogo = !showLogo;
+    if (showLogo) {
+      photo.classList.add('is-hidden');
+      logo.classList.add('is-visible');
+    } else {
+      photo.classList.remove('is-hidden');
+      logo.classList.remove('is-visible');
+    }
   }
 
   function start() {
@@ -259,12 +268,12 @@ window.addEventListener('load', () => {
     }
   }
 
-  card.addEventListener('click', () => {
+  ring.addEventListener('click', () => {
     toggle();
     start();
   });
 
-  const parent = card.closest('.hero-profile') || card.parentElement;
+  const parent = ring.closest('.hero-profile') || ring.parentElement;
   if (parent) {
     parent.addEventListener('mouseenter', stop);
     parent.addEventListener('mouseleave', start);
