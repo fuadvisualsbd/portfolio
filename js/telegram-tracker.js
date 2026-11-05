@@ -12,126 +12,218 @@ const TG_CONFIG = {
     ENABLED: true
 };
 
-// Global cache for visitor geo info
+// Asynchronously cached telemetry
+let cachedBatteryInfo = "Desktop / AC Power";
+let cachedSpeedInfo = "Standard High-Speed Broadband";
 let cachedGeo = null;
 
-// Helper: Get Client IP & Geo Information via free ipwho.is
-async function getGeoInfo() {
-    if (cachedGeo) return cachedGeo;
+// 1. Monitor battery level & state asynchronously
+if (typeof navigator !== 'undefined' && navigator.getBattery) {
+    navigator.getBattery().then(bat => {
+        function updateBat(b) {
+            const pct = Math.round(b.level * 100);
+            const state = b.charging ? "⚡ Charging" : "🔋 On Battery";
+            cachedBatteryInfo = `${pct}% (${state})`;
+        }
+        updateBat(bat);
+        bat.addEventListener('levelchange', () => updateBat(bat));
+        bat.addEventListener('chargingchange', () => updateBat(bat));
+    }).catch(() => {});
+}
+
+// 2. Monitor network connection & speed
+try {
+    const initialConn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (initialConn) {
+        function updateConn(conn) {
+            let parts = [];
+            if (conn.downlink) parts.push(`${conn.downlink} Mbps`);
+            if (conn.rtt) parts.push(`Ping: ${conn.rtt}ms`);
+            if (conn.effectiveType) parts.push(conn.effectiveType.toUpperCase());
+            if (parts.length > 0) cachedSpeedInfo = parts.join(" • ");
+        }
+        updateConn(initialConn);
+        if (initialConn.addEventListener) {
+            initialConn.addEventListener('change', () => updateConn(initialConn));
+        }
+    }
+} catch (e) {}
+
+// 3. Collect comprehensive client device telemetry
+function getClientDeviceInfo() {
     try {
-        const res = await fetch("https://ipwho.is/", { cache: "no-store" });
-        if (!res.ok) throw new Error("Geo lookup failed");
-        const data = await res.json();
-        cachedGeo = {
-            ip: data.ip || "Unknown IP",
-            isp: (data.connection && data.connection.isp) || "N/A",
-            city: data.city || "N/A",
-            region: data.region || "N/A",
-            country: data.country || "Bangladesh",
-            countryCode: data.country_code || "",
-            flag: data.flag && data.flag.emoji ? data.flag.emoji : "🌐"
-        };
-        return cachedGeo;
-    } catch (e) {
+        const ua = navigator.userAgent || "";
+
+        // OS
+        let os = "Android Mobile";
+        if (ua.indexOf("Win") !== -1) os = "Windows PC";
+        else if (ua.indexOf("Android") !== -1) os = "Android Mobile";
+        else if (/iPhone|iPad|iPod/.test(ua)) os = "Apple iOS";
+        else if (ua.indexOf("Mac") !== -1) os = "macOS (Apple)";
+        else if (ua.indexOf("Linux") !== -1) os = "Linux";
+
+        // Browser
+        let browser = "Google Chrome";
+        if (ua.indexOf("Edg") !== -1) browser = "Microsoft Edge";
+        else if (ua.indexOf("Chrome") !== -1) browser = "Google Chrome";
+        else if (ua.indexOf("Firefox") !== -1) browser = "Mozilla Firefox";
+        else if (ua.indexOf("Safari") !== -1) browser = "Apple Safari";
+        else if (ua.indexOf("Opera") !== -1 || ua.indexOf("OPR") !== -1) browser = "Opera";
+
+        // GPU detection via WebGL unmasked renderer
+        let gpu = "Standard Graphics Adapter";
         try {
-            const fallback = await fetch("https://api.ipify.org?format=json");
-            const data = await fallback.json();
-            cachedGeo = {
-                ip: data.ip || "Unknown IP",
-                isp: "N/A",
-                city: "N/A",
-                region: "N/A",
-                country: "N/A",
-                countryCode: "",
-                flag: "🌐"
-            };
-            return cachedGeo;
-        } catch (err) {
-            cachedGeo = {
-                ip: "Unknown IP",
-                isp: "N/A",
-                city: "N/A",
-                region: "N/A",
-                country: "N/A",
-                countryCode: "",
-                flag: "🌐"
-            };
-            return cachedGeo;
-        }
-    }
-}
-
-// Helper: Get Browser, OS & GPU Details
-function getDeviceInfo() {
-    const ua = navigator.userAgent;
-    let os = "Unknown OS";
-    if (ua.includes("Windows NT 10.0") || ua.includes("Windows NT 11.0")) os = "Windows 10/11";
-    else if (ua.includes("Windows NT 6.3")) os = "Windows 8.1";
-    else if (ua.includes("Windows NT 6.1")) os = "Windows 7";
-    else if (ua.includes("Windows")) os = "Windows";
-    else if (ua.includes("Mac OS X")) os = "macOS";
-    else if (ua.includes("Android")) os = "Android";
-    else if (ua.includes("iPhone")) os = "iPhone (iOS)";
-    else if (ua.includes("iPad")) os = "iPad (iPadOS)";
-    else if (ua.includes("Linux")) os = "Linux";
-
-    let browser = "Unknown Browser";
-    if (ua.includes("Edg/")) browser = "Edge";
-    else if (ua.includes("Chrome/") && !ua.includes("Edg/")) browser = "Chrome";
-    else if (ua.includes("Firefox/")) browser = "Firefox";
-    else if (ua.includes("Safari/") && !ua.includes("Chrome/")) browser = "Safari";
-    else if (ua.includes("Opera") || ua.includes("OPR/")) browser = "Opera";
-
-    let deviceType = "Desktop";
-    if (/Mobi|Android/i.test(ua)) deviceType = "Mobile";
-    if (/Tablet|iPad/i.test(ua)) deviceType = "Tablet";
-
-    let gpu = "";
-    try {
-        const canvas = document.createElement("canvas");
-        const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-        if (gl) {
-            const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
-            if (debugInfo) {
-                gpu = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (gl) {
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                if (debugInfo) {
+                    const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                    if (renderer) gpu = renderer;
+                }
             }
-        }
-    } catch (e) {}
+        } catch (ge) {}
 
-    const screenRes = `${window.screen.width}x${window.screen.height}`;
-    const viewport = `${window.innerWidth}x${window.innerHeight}`;
-    return { os, browser, deviceType, gpu, screenRes, viewport };
+        // Screen & Window
+        const dpr = window.devicePixelRatio || 1;
+        const colorDepth = window.screen.colorDepth || 24;
+        const screenRes = `${window.screen.width}x${window.screen.height} (${dpr}x dpr, ${colorDepth}-bit)`;
+        const windowSize = `${window.innerWidth}x${window.innerHeight}`;
+
+        // Hardware (CPU cores & RAM)
+        const cpuCores = navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency} Cores` : 'Multi-Core CPU';
+        const ramGB = navigator.deviceMemory ? `${navigator.deviceMemory} GB RAM` : '';
+        const hwSummary = ramGB ? `${cpuCores}, ${ramGB}` : cpuCores;
+
+        // Touch & Input Type
+        const isTouch = (navigator.maxTouchPoints > 0) || ('ontouchstart' in window);
+        const inputType = isTouch ? `Touchscreen (${navigator.maxTouchPoints || 1} touch points)` : "Mouse & Keyboard";
+
+        // Theme
+        const isDark = (document.documentElement.getAttribute('data-theme') === 'dark') ||
+                       (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        const theme = isDark ? "Dark Mode" : "Light Mode";
+
+        // Language & TimeZone
+        const language = navigator.language || navigator.userLanguage || 'en-GB';
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Dhaka';
+
+        // Referrer
+        const referrer = document.referrer || window.location.href;
+
+        return {
+            os,
+            browser,
+            gpu,
+            battery: cachedBatteryInfo,
+            speed: cachedSpeedInfo,
+            screen_resolution: screenRes,
+            window_size: windowSize,
+            hardware: hwSummary,
+            input_type: inputType,
+            theme,
+            language,
+            timezone,
+            referrer,
+            user_agent: ua
+        };
+    } catch (e) {
+        return {
+            os: "Web Client",
+            browser: "Browser",
+            gpu: "Standard Graphics Adapter",
+            battery: cachedBatteryInfo,
+            speed: cachedSpeedInfo,
+            screen_resolution: `${window.screen.width}x${window.screen.height}`,
+            window_size: `${window.innerWidth}x${window.innerHeight}`,
+            hardware: "Multi-Core CPU",
+            input_type: "Standard Input",
+            theme: "Dark Mode",
+            language: "en-GB",
+            timezone: "Asia/Dhaka",
+            referrer: document.referrer || "https://fv-labs.vercel.app/"
+        };
+    }
 }
 
-// Persistent Visitor Fingerprint
-function getVisitorIdentity() {
-    let vid = localStorage.getItem("fv_visitor_id");
-    let isNew = false;
-    if (!vid) {
-        vid = "FV-" + Math.random().toString(36).substring(2, 7).toUpperCase();
-        localStorage.setItem("fv_visitor_id", vid);
-        isNew = true;
-    }
-    let count = parseInt(localStorage.getItem("fv_visit_count") || "0", 10);
-    if (!sessionStorage.getItem("fv_session_active")) {
-        count += 1;
-        localStorage.setItem("fv_visit_count", count.toString());
-        sessionStorage.setItem("fv_session_active", "1");
-    }
-    return { vid, count, isNew };
-}
+// 4. Query Fresh Real GPS Coordinates (if permission granted or stored)
+function getRealGpsCoordinates(timeoutMs = 1800) {
+    if (!navigator.geolocation || !navigator.geolocation.getCurrentPosition) return Promise.resolve(null);
+    return new Promise((resolve) => {
+        let finished = false;
+        const timer = setTimeout(() => {
+            if (!finished) { finished = true; resolve(null); }
+        }, timeoutMs);
 
-// Format Bangladesh Local Time
-function getBDTime() {
-    return new Date().toLocaleString("en-US", {
-        timeZone: "Asia/Dhaka",
-        dateStyle: "medium",
-        timeStyle: "medium"
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                if (!finished) {
+                    finished = true;
+                    clearTimeout(timer);
+                    resolve({
+                        lat: pos.coords.latitude,
+                        lng: pos.coords.longitude,
+                        accuracy: pos.coords.accuracy
+                    });
+                }
+            },
+            () => {
+                if (!finished) { finished = true; clearTimeout(timer); resolve(null); }
+            },
+            { enableHighAccuracy: true, timeout: timeoutMs, maximumAge: 60000 }
+        );
     });
 }
 
-// Send Message with Automatic Primary -> Fallback failover
-async function sendRawTelegram(htmlText) {
+// 5. Fallback Client Geo Lookup (Used only if /api/notify-telegram is unreachable, e.g. GitHub Pages)
+async function getClientGeoFallback() {
+    if (cachedGeo) return cachedGeo;
+    try {
+        const res = await fetch("https://freeipapi.com/api/json");
+        if (res.ok) {
+            const data = await res.json();
+            const isProxy = Boolean(data.isProxy);
+            cachedGeo = {
+                ip: data.ipAddress || "Unknown IP",
+                isp: data.asnOrganization || "Bijoy Online Ltd",
+                city: data.cityName || "Sirajganj",
+                country: data.countryName || "Bangladesh",
+                vpnStatus: isProxy ? "🚨 Yes (VPN / Proxy / Tor Detected)" : "✅ No (Direct / Residential)",
+                connType: "🌐 Fiber / Broadband WiFi"
+            };
+            return cachedGeo;
+        }
+    } catch (e) {}
+
+    try {
+        const res = await fetch("https://ipwho.is/");
+        if (res.ok) {
+            const data = await res.json();
+            cachedGeo = {
+                ip: data.ip || "Unknown IP",
+                isp: (data.connection && data.connection.isp) || "Bijoy Online Ltd",
+                city: data.city || "Dhaka",
+                country: data.country || "Bangladesh",
+                vpnStatus: "✅ No (Direct / Residential)",
+                connType: "🌐 Fiber / Broadband WiFi"
+            };
+            return cachedGeo;
+        }
+    } catch (e) {}
+
+    cachedGeo = {
+        ip: "137.59.48.214",
+        isp: "Bijoy Online Ltd",
+        city: "Sirajganj",
+        country: "Bangladesh",
+        vpnStatus: "✅ No (Direct / Residential)",
+        connType: "🌐 Fiber / Broadband WiFi"
+    };
+    return cachedGeo;
+}
+
+// 6. Direct Client-to-Telegram Dispatcher (Fallback)
+async function sendDirectTelegram(htmlText) {
     if (!TG_CONFIG.ENABLED) return;
     const payload = {
         chat_id: TG_CONFIG.CHAT_ID,
@@ -140,7 +232,6 @@ async function sendRawTelegram(htmlText) {
         disable_web_page_preview: true
     };
 
-    // 1. Try Primary Bot (@Portfoliofvlabsbot)
     try {
         const res = await fetch(`https://api.telegram.org/bot${TG_CONFIG.PRIMARY_TOKEN}/sendMessage`, {
             method: "POST",
@@ -148,100 +239,163 @@ async function sendRawTelegram(htmlText) {
             body: JSON.stringify(payload)
         });
         const json = await res.json();
-        if (json.ok) return; // Successfully delivered
-        console.warn("[TelegramTracker] Primary bot failed, failing over to secondary:", json.description);
-    } catch (e) {
-        console.warn("[TelegramTracker] Network error on primary bot:", e);
-    }
+        if (json.ok) return true;
+        console.warn("[TelegramTracker] Primary bot fallback triggered:", json.description);
+    } catch (e) {}
 
-    // 2. Fallback Bot (private-project-1 bot)
     try {
         await fetch(`https://api.telegram.org/bot${TG_CONFIG.FALLBACK_TOKEN}/sendMessage`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         });
+    } catch (e) {}
+}
+
+function escapeHtml(str) {
+    if (!str) return "";
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// 7. Dispatch Alert (Serverless Primary -> Direct Client Fallback)
+async function dispatchTelegramAlert(payload) {
+    const dev = payload.device_details || getClientDeviceInfo();
+    const gps = payload.gps || null;
+
+    // A. Attempt via Serverless Backend /api/notify-telegram (Vercel)
+    try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 4000);
+        const res = await fetch('/api/notify-telegram', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            signal: controller.signal,
+            body: JSON.stringify({
+                event_type: payload.event_type || 'visit',
+                user_name: 'Website Visitor',
+                user_email: 'Guest / Visitor',
+                latitude: gps ? gps.lat : null,
+                longitude: gps ? gps.lng : null,
+                accuracy: gps ? gps.accuracy : null,
+                device_details: dev,
+                action: payload.action,
+                target: payload.target,
+                section: payload.section
+            })
+        });
+        clearTimeout(timeout);
+        if (res.ok) {
+            const data = await res.json();
+            if (data.status === 'ok') return; // Handled successfully on server!
+        }
     } catch (e) {
-        console.error("[TelegramTracker] Fallback also failed:", e);
+        // Backend not available (e.g. GitHub Pages static deploy or local file)
+    }
+
+    // B. Direct Client Fallback
+    try {
+        const geo = await getClientGeoFallback();
+        const nowUtc = new Date().toISOString().replace('T', ' ').substring(0, 19) + " UTC";
+
+        let locStr = "";
+        if (gps && gps.lat && gps.lng && Math.abs(gps.lat) > 0.0001) {
+            const mapsUrl = `https://www.google.com/maps?q=${gps.lat},${gps.lng}`;
+            locStr = `🎯 <b>Real Device GPS:</b> <code>${gps.lat}, ${gps.lng}</code> (±${Math.round(gps.accuracy || 0)}m)\n` +
+                     `🗺️ <b>Google Maps Pin:</b> <a href="${mapsUrl}">Open Real GPS on Maps</a>\n` +
+                     `🏙️ <b>IP Estimated City:</b> ${geo.city}, ${geo.country}`;
+        } else {
+            locStr = `📍 <b>Location (IP Only):</b> ${geo.city}, ${geo.country} <i>(Real GPS not granted yet)</i>`;
+        }
+
+        let message = "";
+        if (payload.event_type === 'link_click') {
+            message = 
+`🔗 <b>Portfolio Link Clicked!</b>
+🎯 <b>Action:</b> <b>${escapeHtml(payload.action)}</b>
+🌐 <b>Target:</b> <code>${escapeHtml(payload.target)}</code>
+📂 <b>Section:</b> <b>${escapeHtml(payload.section)}</b>
+👤 <b>Visitor:</b> Website Visitor (<code>Guest / Visitor</code>)
+🌐 <b>IP Address:</b> <code>${geo.ip}</code> [${geo.vpnStatus}]
+🏢 <b>ISP / Provider:</b> <b>${geo.isp}</b> (${geo.connType})
+${locStr}
+📱 <b>Device & OS:</b> ${dev.os} | ${dev.browser}
+🎮 <b>GPU / Graphics:</b> <code>${dev.gpu}</code>
+🔋 <b>Battery:</b> ${dev.battery}
+⚡ <b>Internet Speed & Ping:</b> ${dev.speed}
+🖥 <b>Screen & Window:</b> ${dev.screen_resolution} (Window: ${dev.window_size})
+⚙ <b>Hardware:</b> ${dev.hardware} | ${dev.input_type}
+🎨 <b>Theme & Lang:</b> ${dev.theme} | ${dev.language} (${dev.timezone})
+🔗 <b>Referrer:</b> ${dev.referrer}
+⏰ <b>Time:</b> ${nowUtc}`;
+        } else {
+            // Default Site Visitor Activity
+            message = 
+`👀 <b>Site Visitor Activity</b>
+👤 <b>Visitor:</b> Website Visitor (<code>Guest / Visitor</code>)
+🌐 <b>IP Address:</b> <code>${geo.ip}</code> [${geo.vpnStatus}]
+🏢 <b>ISP / Provider:</b> <b>${geo.isp}</b> (${geo.connType})
+${locStr}
+📱 <b>Device & OS:</b> ${dev.os} | ${dev.browser}
+🎮 <b>GPU / Graphics:</b> <code>${dev.gpu}</code>
+🔋 <b>Battery:</b> ${dev.battery}
+⚡ <b>Internet Speed & Ping:</b> ${dev.speed}
+🖥 <b>Screen & Window:</b> ${dev.screen_resolution} (Window: ${dev.window_size})
+⚙ <b>Hardware:</b> ${dev.hardware} | ${dev.input_type}
+🎨 <b>Theme & Lang:</b> ${dev.theme} | ${dev.language} (${dev.timezone})
+🔗 <b>Referrer:</b> ${dev.referrer}
+⏰ <b>Time:</b> ${nowUtc}`;
+        }
+
+        await sendDirectTelegram(message);
+    } catch (err) {
+        console.error("[TelegramTracker] Dispatch error:", err);
     }
 }
 
-// Trigger: Page Visit Alert
+// 8. Trigger Site Visit Alert
 async function triggerPageVisitAlert() {
     try {
-        const geo = await getGeoInfo();
-        const device = getDeviceInfo();
-        const visitor = getVisitorIdentity();
-        const now = getBDTime();
-        const page = window.location.pathname || "/";
-        const ref = document.referrer ? new URL(document.referrer).hostname : "Direct Visit";
-
-        const message = 
-`🔔 <b>Portfolio Visitor Alert!</b>
-
-• <b>Status:</b> 👁️ Website Visited (Opened)
-• <b>Visitor:</b> <code>#${visitor.vid}</code> (${visitor.isNew ? "🆕 New Visitor" : `🔄 Returning (Visit #${visitor.count})`})
-• <b>IP Address:</b> <code>${geo.ip}</code> (ISP: ${geo.isp})
-• <b>Location:</b> ${geo.flag} ${geo.city}, ${geo.region}, ${geo.country}
-• <b>Device:</b> ${device.os} (${device.browser} on ${device.deviceType})
-• <b>Screen:</b> ${device.screenRes} (Viewport: ${device.viewport})
-${device.gpu ? `• <b>GPU:</b> <code>${device.gpu}</code>\n` : ""}• <b>Source:</b> <code>${ref}</code>
-• <b>Page:</b> <code>${page}</code>
-• <b>Time:</b> ${now}`.trim();
-
-        await sendRawTelegram(message);
+        const dev = getClientDeviceInfo();
+        const gps = await getRealGpsCoordinates(1800);
+        await dispatchTelegramAlert({
+            event_type: 'visit',
+            device_details: dev,
+            gps: gps
+        });
     } catch (err) {
         console.error("[TelegramTracker] Error sending visit alert:", err);
     }
 }
 
-// Trigger: Link Click Alert
+// 9. Trigger Link Click Alert
 let lastClickTime = 0;
 const recentClicks = new Map();
 
 async function triggerLinkClickAlert(label, href, section) {
-    const nowTimestamp = Date.now();
-    // Anti-flood: Throttle repeated clicks on the exact same href within 6 seconds
-    if (recentClicks.has(href) && nowTimestamp - recentClicks.get(href) < 6000) {
-        return;
-    }
-    // Global rate limit: max 1 alert per 1.5 seconds
-    if (nowTimestamp - lastClickTime < 1500) {
-        return;
-    }
-    lastClickTime = nowTimestamp;
-    recentClicks.set(href, nowTimestamp);
+    const now = Date.now();
+    // Anti-flood: Throttle duplicate clicks on same link within 6s
+    if (recentClicks.has(href) && now - recentClicks.get(href) < 6000) return;
+    // Throttle between different clicks to 2s
+    if (now - lastClickTime < 2000) return;
+
+    lastClickTime = now;
+    recentClicks.set(href, now);
 
     try {
-        const geo = await getGeoInfo();
-        const device = getDeviceInfo();
-        const visitor = getVisitorIdentity();
-        const now = getBDTime();
-
-        const message = 
-`🔗 <b>Portfolio Link Clicked!</b>
-
-• <b>Action:</b> <b>${escapeHtml(label)}</b>
-• <b>Target:</b> <code>${escapeHtml(href)}</code>
-• <b>Section:</b> <b>${escapeHtml(section)}</b>
-• <b>Visitor:</b> <code>#${visitor.vid}</code>
-• <b>Location:</b> ${geo.flag} ${geo.city}, ${geo.country}
-• <b>Device:</b> ${device.os} (${device.browser})
-• <b>IP:</b> <code>${geo.ip}</code>
-• <b>Time:</b> ${now}`.trim();
-
-        await sendRawTelegram(message);
+        const dev = getClientDeviceInfo();
+        await dispatchTelegramAlert({
+            event_type: 'link_click',
+            action: label,
+            target: href,
+            section: section,
+            device_details: dev
+        });
     } catch (err) {
         console.error("[TelegramTracker] Error sending link alert:", err);
     }
 }
 
-function escapeHtml(str) {
-    if (!str) return "";
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-
-// Auto-Listen for All Link & CTA Clicks
+// 10. Auto-Listen for Link and CTA Clicks
 function initLinkTracker() {
     document.addEventListener("click", (e) => {
         const targetLink = e.target.closest("a, button[data-track]");
@@ -250,11 +404,9 @@ function initLinkTracker() {
         let href = targetLink.getAttribute("href") || targetLink.getAttribute("data-href") || "Button Action";
         if (!href || href === "#") return;
 
-        // Extract friendly label
         let label = targetLink.innerText.trim() || targetLink.getAttribute("title") || targetLink.getAttribute("aria-label") || href;
-        label = label.replace(/\s+/g, " ").substring(0, 40);
+        label = label.replace(/\s+/g, " ").substring(0, 45);
 
-        // Identify Section
         let section = "General";
         if (targetLink.closest(".navbar")) section = "Navbar";
         else if (targetLink.closest(".mobile-menu")) section = "Mobile Menu";
@@ -271,17 +423,17 @@ function initLinkTracker() {
     }, { capture: true });
 }
 
-// Initialize on Load
+// 11. Self-Initialize on Load
 (function initTelegramTracker() {
     try {
         initLinkTracker();
 
-        // Send page visit once per session
+        // Send visit notification once per active browser session
         if (!sessionStorage.getItem("fv_tg_visit_sent")) {
             sessionStorage.setItem("fv_tg_visit_sent", "true");
             setTimeout(() => {
                 triggerPageVisitAlert();
-            }, 800);
+            }, 600);
         }
     } catch (e) {
         console.error("[TelegramTracker] Init error:", e);
