@@ -744,6 +744,23 @@ html[data-theme="dark"] .tool-card.tool-card-blue:hover {
   border-color: #3b82f6 !important;
   box-shadow: 0 10px 30px rgba(59, 130, 246, 0.32) !important;
 }
+.tool-card.tool-card-red {
+  border-color: rgba(220, 38, 38, 0.35);
+}
+.tool-card.tool-card-red:hover {
+  border-color: #dc2626 !important;
+  box-shadow: 0 10px 28px rgba(220, 38, 38, 0.24) !important;
+}
+.tool-card.tool-card-red::after {
+  background: linear-gradient(135deg, #991b1b, #dc2626, #f97316) !important;
+}
+html[data-theme="dark"] .tool-card.tool-card-red {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+html[data-theme="dark"] .tool-card.tool-card-red:hover {
+  border-color: #ef4444 !important;
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.32) !important;
+}
 .tool-badge-private {
   position: absolute;
   top: 8px;
