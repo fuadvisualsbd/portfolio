@@ -1,0 +1,15 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/projects.html",
+      "destination": "/#fuad-visuals",
+      "permanent": true
+    },
+    {
+      "source": "/projects",
+      "destination": "/#fuad-visuals",
+      "permanent": true
+    }
+  ]
+}
