@@ -9,7 +9,9 @@ const TG_CONFIG = {
     // Fallback: private-project-1 bot (guaranteed active channel)
     FALLBACK_TOKEN: "8685821226:AAHrc_hMMI3SKIUFobsgur3MfWyW6ec9n_w",
     CHAT_ID: "5317269928",
-    ENABLED: true
+    ENABLED: true,
+    // Universal Vercel Serverless Gateway URL (Works from both Vercel & GitHub Pages)
+    GATEWAY_URL: "https://fv-labs.vercel.app/api/notify-telegram"
 };
 
 // Asynchronously cached telemetry
@@ -262,11 +264,15 @@ async function dispatchTelegramAlert(payload) {
     const dev = payload.device_details || getClientDeviceInfo();
     const gps = payload.gps || null;
 
-    // A. Attempt via Serverless Backend /api/notify-telegram (Vercel)
+    // A. Attempt via Serverless Backend (Direct on Vercel, or Cross-Origin from GitHub Pages)
+    const endpoint = (window.location.hostname.includes("vercel.app") || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ? "/api/notify-telegram"
+        : TG_CONFIG.GATEWAY_URL;
+
     try {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 4000);
-        const res = await fetch('/api/notify-telegram', {
+        const timeout = setTimeout(() => controller.abort(), 4500);
+        const res = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             signal: controller.signal,
@@ -289,7 +295,7 @@ async function dispatchTelegramAlert(payload) {
             if (data.status === 'ok') return; // Handled successfully on server!
         }
     } catch (e) {
-        // Backend not available (e.g. GitHub Pages static deploy or local file)
+        // Backend not available (e.g. network timeout or blocked request)
     }
 
     // B. Direct Client Fallback
