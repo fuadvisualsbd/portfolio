@@ -144,7 +144,13 @@ window.addEventListener('load', () => {
 (function initTyping() {
   const el = document.getElementById('typed-text');
   if (!el) return;
-  const roles = ['Creative Technology Studio', 'AI & Automation', 'SaaS Development', 'Software Solutions'];
+  const roles = [
+    'AI Workflow Automation Specialist',
+    'Custom Tool & AI Agent Builder',
+    'Adobe Automation & ExtendScript',
+    'Fast SaaS MVP Development',
+    'Creative Technology Studio'
+  ];
   let roleIndex = 0, charIndex = 0, isDeleting = false;
   function type() {
     const current = roles[roleIndex];

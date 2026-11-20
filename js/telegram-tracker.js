@@ -261,7 +261,7 @@ function initLinkTracker() {
         else if (targetLink.closest("#home")) section = "Hero Section";
         else if (targetLink.closest("#fv-labs")) section = "FV Labs (Products)";
         else if (targetLink.closest("#fuad-visuals")) section = "Fuad Visuals";
-        else if (targetLink.closest("#software")) section = "Software Downloads";
+        else if (targetLink.closest(".custom-tool-banner")) section = "Custom Tool Banner";
         else if (targetLink.closest("#blog")) section = "Blog Section";
         else if (targetLink.closest("#contact")) section = "Contact Area";
         else if (targetLink.closest(".floating-socials")) section = "Floating Socials";
